@@ -1,2 +1,3 @@
-# year-cohort-projectName
-project template repo
+# 2020-feb-numberGame
+
+Armadillos Brain training Number Game
