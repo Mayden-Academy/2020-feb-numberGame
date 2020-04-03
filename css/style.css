@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+:root {
+    font-size: 62.5%;
+}
+
 main {
     margin: 0 auto;
     max-width: 1000px;
@@ -15,6 +19,11 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#start {
+    padding: 40px 80px;
+    font-size: 2.5rem;
 }
 
 .instructions {
