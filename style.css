@@ -16,3 +16,12 @@ main {
     justify-content: center;
     align-items: center;
 }
+
+.instructions {
+    border: 1px solid #000000;
+    margin-top: 30px;
+}
+
+.instructions ol {
+    text-align: left;
+}
