@@ -41,3 +41,7 @@ main {
     flex-direction: row;
     justify-content: space-between;
 }
+
+.chosen_number {
+    background-color: #505050;
+}
