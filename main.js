@@ -8,9 +8,22 @@ const generateNumbers = () => {
         let randNumber = Math.floor(Math.random() * 100.1);
         allNumbers.push(randNumber);
     }
-    allNumbers.sort(function(a, b){return a-b});
     return allNumbers;
 };
 
-generateNumbers();
+
+const displayNumbers = () => {
+    let allNumbers = generateNumbers();
+    let numbersOnScreen = allNumbers.length;
+
+    for (i=0; i<numbersOnScreen; i++) {
+        let randNumber = allNumbers.pop();
+        let number = document.createElement('div');
+        number.textContent = randNumber;
+        number.setAttribute('class', 'numberBox');
+        document.querySelector('#play_area').appendChild(number);
+    }
+}
+
+displayNumbers();
 
