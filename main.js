@@ -12,8 +12,8 @@ const generateNumbers = () => {
 };
 
 
-const displayNumbers = () => {
-    let allNumbers = generateNumbers();
+const displayNumbers = (allNumbers) => {
+
     let numbersOnScreen = allNumbers.length;
 
     for (i=0; i<numbersOnScreen; i++) {
@@ -24,6 +24,6 @@ const displayNumbers = () => {
         document.querySelector('#play_area').appendChild(number);
     }
 }
-
-displayNumbers();
+let randomNumbers = generateNumbers();
+displayNumbers(randomNumbers);
 
