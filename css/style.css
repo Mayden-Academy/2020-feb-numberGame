@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+main {
+    margin: 0 auto;
+    max-width: 1000px;
+    width: 100%;
+    text-align: center;
+}
+
+.screen {
+    height: 800px;
+    border: 1px solid #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#start {
+    padding: 40px 80px;
+    font-size: 2.5rem;
+}
+
+.instructions {
+    border: 1px solid #000000;
+    margin-top: 30px;
+}
+
+.instructions ol {
+    text-align: left;
+}
