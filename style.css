@@ -16,3 +16,28 @@ main {
     justify-content: center;
     align-items: center;
 }
+
+#game {
+    display: none;
+}
+
+#game_screen {
+    height: 100%;
+    width: 100%;
+}
+
+#top_bar {
+    border: 1px solid #000000;
+}
+
+#player_score, #game_timer {
+    margin: 0 20px;
+    font-size: 2rem;
+}
+
+#top_bar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
