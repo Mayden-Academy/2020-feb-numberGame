@@ -13,7 +13,7 @@ function generateNumbers() {
 
 function displayNumbers() {
     const randomNumbers = generateNumbers();
-    const sortedNumbers = randomNumbers.slice(0).sort();
+    const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
     let numbersOnScreen = randomNumbers.length;
      // using a for loop instead of forEach as the array.pop changes the length over each iteration
      for (let i = 0; i < numbersOnScreen; i++) {
@@ -31,9 +31,13 @@ function displayNumbers() {
 
             const { textContent, classList } = element;
             const value = parseInt(textContent);
-            if (sortedNumbers[selectedOrder.length] === value) {
-                selectedOrder.push(value);
-                classList.add('chosen_number');
+            if (!classList.contains('chosen_number')) {
+                if (sortedNumbers[selectedOrder.length] === value) {
+                    selectedOrder.push(value);
+                    classList.add('chosen_number');
+                } else {
+                    //penalty screen
+                }
             }
 
             if (selectedOrder === sortedNumbers) {
