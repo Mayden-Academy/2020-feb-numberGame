@@ -1,8 +1,7 @@
-function generateNumbers() {
-    let numbersOnScreen = Math.floor(Math.random() * 3) + 3;
+function generateEasyNumbers(numbersWanted) {
     let allNumbers = [];
 
-    for (let i = 0; i < numbersOnScreen; i++) {
+    for (let i = 0; i < numbersWanted; i++) {
         let randNumber = Math.floor(Math.random() * 101);
 
         allNumbers.push(randNumber);
@@ -10,6 +9,61 @@ function generateNumbers() {
 
     return allNumbers;
 }
+
+function generateNegativeNumbers(numbersWanted) {
+    let allNumbers = [];
+
+    for (let i = 0; i < numbersWanted; i++) {
+        let randNumber = Math.floor(Math.random() * 201) - 100;
+
+        allNumbers.push(randNumber);
+    }
+
+    return allNumbers;
+}
+
+function generateHardNumbers(numbersWanted){
+    let randNumber = '';
+    let allNumbers = [];
+    let numberSelect = Math.floor(Math.random() * 10);
+
+    for (let i = 0; i < numbersWanted; i++) {
+        let rand1in11chance = Math.floor(Math.random() * 11);
+
+        if (rand1in11chance === 10) {
+            randNumber = numberSelect;
+        } else {
+            let randSecondNumber = Math.floor(Math.random() * 10);
+            randNumber = parseInt("" + numberSelect + randSecondNumber);
+        }
+
+        if(Math.random() > 0.5) {
+            allNumbers.push(randNumber);
+        } else {
+            allNumbers.push(0 - randNumber);
+        }
+    }
+    return allNumbers;
+}
+
+function generateNumbers(cycle = 0) {
+    let numbersWanted = Math.floor(Math.random() * 3) + 3;
+
+    if (cycle < 2) {
+        return generateEasyNumbers(numbersWanted);
+    } else if ((cycle === 3) || (cycle === 4)) {
+        return generateNegativeNumbers(numbersWanted);
+    } else if ((cycle === 5) || (cycle === 6)) {
+        return generateNegativeNumbers(numbersWanted - 2).concat(generateHardNumbers(2));
+    } else if ((cycle === 7) || (cycle === 8)) {
+        return generateNegativeNumbers(numbersWanted - 3).concat(generateHardNumbers(3));
+    } else {
+        return generateHardNumbers(numbersWanted);
+    }
+}
+
+
+
 
 function displayNumbers(currentScore) {
     const randomNumbers = generateNumbers();
