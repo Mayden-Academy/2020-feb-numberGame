@@ -14,11 +14,10 @@ function generateNumbers() {
 function displayNumbers() {
     const randomNumbers = generateNumbers();
     const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
-    let numbersOnScreen = randomNumbers.length;
+    const numbersOnScreen = randomNumbers.length;
     let selectedOrder = [];
 
-    // using a for loop instead of forEach as the array.pop
-    // changes the length over each iteration
+    // using a for loop instead of forEach as the array.pop changes the length over each iteration
     for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = randomNumbers.pop();
         let number = document.createElement('div');
@@ -38,6 +37,11 @@ function displayNumbers() {
                 if (sortedNumbers[selectedOrder.length] === value) {
                     selectedOrder.push(value);
                     classList.add('chosen_number');
+                } else {
+                    document.querySelectorAll('.chosen_number').forEach((chosenNumber) => {
+                        chosenNumber.classList.remove('chosen_number');
+                        selectedOrder = [];
+                    });
                 }
             }
 
@@ -51,6 +55,8 @@ function displayNumbers() {
 document.querySelector('#start').addEventListener('click', () => {
     document.querySelector('#splash').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
-    displayNumbers();
-});
 
+    displayTimeLeft(totalTime);
+    displayNumbers();
+    timer();
+});
