@@ -20,6 +20,9 @@ main {
 .screen {
     height: 800px;
     border: 1px solid #000000;
+}
+
+#splash {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +55,7 @@ main {
     justify-content: space-between;
 }
 
-#start {
+.play_button {
     padding: 40px 80px;
     font-size: 2.5rem;
 }
@@ -85,5 +88,15 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    display: none;
+}
+
+#game_over {
+    font-size: 4rem;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     display: none;
 }
