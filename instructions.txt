@@ -1,0 +1,7 @@
+1) Press 'Start Game'
+2) You have 30 seconds on the clock to click each card in numerical order, starting smallest to largest.
+3) If you successfully select all the correct numbers you will progress to the next level.  
+4) A penalty box will appear if you click the cards in the incorrect order. This will stop you from interacting with the game for 3 seconds.
+5) When time's up, you'll be shown your score and will have the option to replay the game.
+
+ 
