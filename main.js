@@ -1,6 +1,5 @@
 function generateNumbers() {
     let numbersOnScreen = Math.floor(Math.random() * 3) + 3;
-
     let allNumbers = [];
 
     for (i = 0; i < numbersOnScreen; i++) {
@@ -8,6 +7,7 @@ function generateNumbers() {
 
         allNumbers.push(randNumber);
     }
+
     return allNumbers;
 }
 
