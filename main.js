@@ -5,7 +5,7 @@ const generateNumbers = () => {
     let numbersOnScreen = generate3to5();
     let allNumbers = [];
     for (i=0; i<numbersOnScreen; i++) {
-        let randNumber = Math.floor(Math.random() * 100.1);
+        let randNumber = Math.floor(Math.random() * 101);
         allNumbers.push(randNumber);
     }
     return allNumbers;
@@ -23,7 +23,7 @@ const displayNumbers = (allNumbers) => {
         number.setAttribute('class', 'numberBox');
         document.querySelector('#play_area').appendChild(number);
     }
-}
+};
 let randomNumbers = generateNumbers();
 displayNumbers(randomNumbers);
 
