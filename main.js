@@ -11,8 +11,7 @@ function generateNumbers() {
     return allNumbers;
 }
 
-function displayNumbers() {
-    const randomNumbers = generateNumbers();
+function displayNumbers(randomNumbers) {
     const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
     const numbersOnScreen = randomNumbers.length;
     let selectedOrder = [];
@@ -28,24 +27,26 @@ function displayNumbers() {
         document.querySelector('#play_area').appendChild(number);
     }
 
-    document.querySelectorAll('.numberBox').forEach((element) => {
-        element.addEventListener('click', () => {
-            const { textContent, classList } = element;
-            const value = parseInt(textContent);
+    document.querySelectorAll('.numberBox').forEach((numberBox) => {
+        numberBox.addEventListener('click', () => {
+            const { textContent, classList } = numberBox;
+            const numberBoxValue = parseInt(textContent);
 
-            if (!classList.contains('chosen_number')) {
-                if (sortedNumbers[selectedOrder.length] === value) {
-                    selectedOrder.push(value);
-                    classList.add('chosen_number');
+            // check if already clicked
+            if (!classList.contains('clicked')) {
+                // check if correct number
+                if (sortedNumbers[selectedOrder.length] === numberBoxValue) {
+                    selectedOrder.push(numberBoxValue);
+                    classList.add('clicked');
                 } else {
-                    document.querySelectorAll('.chosen_number').forEach((chosenNumber) => {
-                        chosenNumber.classList.remove('chosen_number');
+                    document.querySelectorAll('.clicked').forEach((chosenNumber) => {
+                        chosenNumber.classList.remove('clicked');
                         selectedOrder = [];
                     });
                 }
             }
 
-            if (JSON.stringify(selectedOrder) === JSON.stringify(sortedNumbers)) {
+            if (selectedOrder.length === sortedNumbers.length) {
                 document.querySelector('#play_area').textContent = '';
             }
         });
@@ -53,10 +54,12 @@ function displayNumbers() {
 }
 
 document.querySelector('#start').addEventListener('click', () => {
+    const randomNumbers = generateNumbers();
+
     document.querySelector('#splash').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
 
     displayTimeLeft(totalTime);
-    displayNumbers();
+    displayNumbers(randomNumbers);
     timer();
 });
