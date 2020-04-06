@@ -56,7 +56,7 @@ function displayNumbers(currentScore) {
 }
 
 document.querySelector('#start').addEventListener('click', () => {
-    let startingScore = 0;
+    const startingScore = 0;
 
     document.querySelector('#splash').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
