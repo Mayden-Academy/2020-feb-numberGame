@@ -11,24 +11,34 @@ function generateNumbers() {
     return allNumbers;
 }
 
-
 function displayNumbers(allNumbers) {
     let numbersOnScreen = allNumbers.length;
-
-    for (let i = 0; i < numbersOnScreen; i++) {
+     // using a for loop instead of forEach as the array.pop changes the length over each iteration
+     for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = allNumbers.pop();
         let number = document.createElement('div');
 
         number.textContent = randNumber;
         number.setAttribute('class', 'numberBox');
-        document.querySelector('#play_area').appendChild(number);
+
+         document.querySelector('#play_area').appendChild(number);
     }
+
+    document.querySelectorAll('.numberBox').forEach((element) => {
+        element.addEventListener('click', () => {
+        });
+    });
 }
 
 const randomNumbers = generateNumbers();
 const sortedNumbers = randomNumbers.sort();
 
-displayNumbers(randomNumbers);
+document.querySelector('#start').addEventListener('click', () => {
+    document.querySelector('#splash').style.display = 'none';
+    document.querySelector('#game').style.display = 'block';
+    let randomNumbers = generateNumbers();
+    displayNumbers(randomNumbers);
+});
 
 let selectedOrder = [];
 
