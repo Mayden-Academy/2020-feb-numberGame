@@ -82,10 +82,10 @@ main {
     font-size: 6rem;
 }
 
-.numberBox:hover {
+.numberBox.clicked:hover {
     cursor: not-allowed;
 }
 
-.numberBox:hover:not(.clicked){
+.numberBox:hover {
     cursor: pointer;
 }
