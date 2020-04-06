@@ -27,8 +27,6 @@ function displayNumbers(allNumbers) {
 
     document.querySelectorAll('.numberBox').forEach((element) => {
         element.addEventListener('click', () => {
-            // placeholder to check functionality
-            element.style.backgroundColor = 'red';
         });
     });
 }
