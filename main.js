@@ -17,7 +17,6 @@ function displayNumbers(allNumbers) {
 
     for (i=0; i<numbersOnScreen; i++) {
         let randNumber = allNumbers.pop();
-
         let number = document.createElement('div');
 
         number.textContent = randNumber;
