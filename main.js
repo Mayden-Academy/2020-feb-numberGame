@@ -31,9 +31,11 @@ function displayNumbers() {
 
             const { textContent, classList } = element;
             const value = parseInt(textContent);
-            if (sortedNumbers[selectedOrder.length] === value) {
-                selectedOrder.push(value);
-                classList.add('chosen_number');
+            if (!classList.contains('chosen_number')) {
+                if (sortedNumbers[selectedOrder.length] === value) {
+                    selectedOrder.push(value);
+                    classList.add('chosen_number');
+                }
             }
 
             if (selectedOrder === sortedNumbers) {
