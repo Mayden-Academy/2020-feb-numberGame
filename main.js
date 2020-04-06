@@ -14,7 +14,8 @@ function generateNumbers() {
 function displayNumbers() {
     const randomNumbers = generateNumbers();
     const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
-    let numbersOnScreen = randomNumbers.length;
+    const numbersOnScreen = allNumbers.length;
+
      // using a for loop instead of forEach as the array.pop changes the length over each iteration
      for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = randomNumbers.pop();
@@ -46,8 +47,12 @@ function displayNumbers() {
 }
 
 document.querySelector('#start').addEventListener('click', () => {
+    displayNumbers();
+
     document.querySelector('#splash').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
-    displayNumbers();
+
+    displayTimeLeft(totalTime);
+    timer();
 });
 
