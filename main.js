@@ -1,8 +1,3 @@
-
-document.querySelectorAll('.numberBox').forEach((element) => {
-    element.addEventListener('click', (e) => {
-    });
-
 function generateNumbers() {
     let numbersOnScreen = Math.floor(Math.random() * 3) + 3;
     let allNumbers = [];
@@ -26,9 +21,21 @@ function displayNumbers(allNumbers) {
 
         number.textContent = randNumber;
         number.setAttribute('class', 'numberBox');
-        document.querySelector('#play_area').appendChild(number);
+        number.style.height = '100px';
+        number.style.width = '100px';
+        number.style.display = 'flex';
+        number.style.alignItems = 'center';
+        number.style.justifyContent = 'center';
+
+         document.querySelector('#play_area').appendChild(number);
     }
 
+    document.querySelectorAll('.numberBox').forEach((element) => {
+        element.addEventListener('click', () => {
+            // placeholder to check functionality
+            element.style.backgroundColor = 'red';
+        })
+    });
 }
 
 document.querySelector('#start').addEventListener('click', () => {
@@ -37,3 +44,5 @@ document.querySelector('#start').addEventListener('click', () => {
     let randomNumbers = generateNumbers();
     displayNumbers(randomNumbers);
 });
+
+
