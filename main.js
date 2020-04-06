@@ -15,7 +15,7 @@ function generateNumbers() {
 function displayNumbers(allNumbers) {
     let numbersOnScreen = allNumbers.length;
 
-    for (i=0; i<numbersOnScreen; i++) {
+    for (i = 0; i < numbersOnScreen; i++) {
         let randNumber = allNumbers.pop();
         let number = document.createElement('div');
 
