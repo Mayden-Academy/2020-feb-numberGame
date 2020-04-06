@@ -11,10 +11,10 @@ function generateNumbers() {
     return allNumbers;
 }
 
-function displayNumbers() {
+function displayNumbers(currentScore) {
     const randomNumbers = generateNumbers();
     const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
-    const numbersOnScreen = allNumbers.length;
+    const numbersOnScreen = randomNumbers.length;
 
      // using a for loop instead of forEach as the array.pop changes the length over each iteration
      for (let i = 0; i < numbersOnScreen; i++) {
@@ -38,20 +38,22 @@ function displayNumbers() {
                     classList.add('chosen_number');
                 }
             }
-
+            console.log(currentScore);
             if (selectedOrder === sortedNumbers) {
-// all selected correctly
+                currentScore++;
+                document.querySelector('#player_score').textContent = `Score: ${currentScore}`;
             }
         });
     });
 }
 
 document.querySelector('#start').addEventListener('click', () => {
-    displayNumbers();
+    let currentScore = 0;
+    displayNumbers(currentScore);
 
     document.querySelector('#splash').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
-
+    document.querySelector('#player_score').textContent = `Score: ${currentScore}`;
     displayTimeLeft(totalTime);
     timer();
 });
