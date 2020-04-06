@@ -17,7 +17,8 @@ function displayNumbers() {
     let numbersOnScreen = randomNumbers.length;
     let selectedOrder = [];
 
-    // using a for loop instead of forEach as the array.pop changes the length over each iteration
+    // using a for loop instead of forEach as the array.pop
+    // changes the length over each iteration
     for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = randomNumbers.pop();
         let number = document.createElement('div');
