@@ -2,7 +2,7 @@ function generateNumbers() {
     let numbersOnScreen = Math.floor(Math.random() * 3) + 3;
     let allNumbers = [];
 
-    for (i = 0; i < numbersOnScreen; i++) {
+    for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = Math.floor(Math.random() * 101);
 
         allNumbers.push(randNumber);
@@ -15,7 +15,7 @@ function generateNumbers() {
 function displayNumbers(allNumbers) {
     let numbersOnScreen = allNumbers.length;
 
-    for (i = 0; i < numbersOnScreen; i++) {
+    for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = allNumbers.pop();
         let number = document.createElement('div');
 
@@ -25,7 +25,20 @@ function displayNumbers(allNumbers) {
     }
 }
 
-let randomNumbers = generateNumbers();
+const randomNumbers = generateNumbers();
+const sortedNumbers = randomNumbers.sort();
 
 displayNumbers(randomNumbers);
 
+let selectedOrder = [];
+
+const { value, classList } = numberElement;
+
+if (sortedNumbers[selectedOrder.length] === value) {
+    selectedOrder.push(value);
+    classList.add('chosen_number');
+}
+
+if (selectedOrder === sortedNumbers) {
+// all selected correctly
+}
