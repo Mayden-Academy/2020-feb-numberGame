@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
 main {
     margin: 0 auto;
     max-width: 1000px;
@@ -40,4 +48,18 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+#start {
+    padding: 40px 80px;
+    font-size: 2.5rem;
+}
+
+.instructions {
+    border: 1px solid #000000;
+    margin-top: 30px;
+}
+
+.instructions ol {
+    text-align: left;
 }
