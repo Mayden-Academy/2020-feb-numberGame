@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
 main {
     margin: 0 auto;
     max-width: 1000px;
@@ -24,6 +32,8 @@ main {
 #game_screen {
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 #top_bar {
@@ -42,6 +52,11 @@ main {
     justify-content: space-between;
 }
 
+#start {
+    padding: 40px 80px;
+    font-size: 2.5rem;
+}
+
 .instructions {
     border: 1px solid #000000;
     margin-top: 30px;
@@ -49,4 +64,16 @@ main {
 
 .instructions ol {
     text-align: left;
+}
+
+#play_area {
+    flex-grow: 100000;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+}
+
+.numberBox {
+    font-size: 6rem;
 }
