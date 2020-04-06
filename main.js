@@ -11,7 +11,6 @@ function generateNumbers() {
     return allNumbers;
 }
 
-
 function displayNumbers(allNumbers) {
     let numbersOnScreen = allNumbers.length;
 
@@ -33,3 +32,16 @@ document.querySelector('#start').addEventListener('click', () => {
     document.querySelector('#splash').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
 });
+
+function timePenalty() {
+    let playArea = document.querySelector('#play_area');
+    let penaltyScreen = document.querySelector('#penaltyScreen');
+
+    playArea.style.display = 'none';
+    penaltyScreen.style.display = 'flex';
+
+    setTimeout((evt) => {
+        playArea.style.display = 'flex';
+        penaltyScreen.style.display = "none"
+    }, 2000);
+}
