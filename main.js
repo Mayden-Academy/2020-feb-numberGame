@@ -37,6 +37,11 @@ function displayNumbers() {
                 if (sortedNumbers[selectedOrder.length] === value) {
                     selectedOrder.push(value);
                     classList.add('chosen_number');
+                } else {
+                    document.querySelectorAll('.chosen_number').forEach((chosenNumber) => {
+                        chosenNumber.classList.remove('chosen_number');
+                        selectedOrder = [];
+                    });
                 }
             }
 
