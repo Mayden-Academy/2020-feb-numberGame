@@ -66,6 +66,8 @@ function generateNumbers(cycle = 0) {
         numberArray = generateNegativeNumbers(numbersWanted - 2).concat(generateHardNumbers(2));
     } else if ((cycle === 7) || (cycle === 8)) {
         numberArray = generateNegativeNumbers(numbersWanted - 3).concat(generateHardNumbers(3));
+    } else if ((cycle === 9) || (cycle === 10)) {
+        numberArray = generateHardNumbers(numbersWanted - 2).concat(generateHardNumbers(2));
     } else {
         numberArray = generateHardNumbers(numbersWanted);
     }
@@ -73,9 +75,7 @@ function generateNumbers(cycle = 0) {
 }
 
 
-
-function displayNumbers(currentScore) {
-    const randomNumbers = generateNumbers();
+function displayNumbers(randomNumbers, currentScore, cycle) {
     const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
     const numbersOnScreen = randomNumbers.length;
     let selectedOrder = [];
@@ -109,24 +109,28 @@ function displayNumbers(currentScore) {
             }
 
             if (JSON.stringify(selectedOrder) === JSON.stringify(sortedNumbers)) {
-                ++currentScore;
+                cycle++;
+                currentScore++;
+                const randNumbers = generateNumbers(cycle);
+
                 document.querySelector('#player_score').textContent = `Score: ${currentScore}`;
                 document.querySelector('#play_area').textContent = '';
-                displayNumbers(currentScore);
+                displayNumbers(randNumbers, currentScore, cycle);
             }
         });
     });
 }
 
 document.querySelector('#start').addEventListener('click', () => {
+    const firstCycle = 0;
     const startingScore = 0;
+    const randNumbers = generateNumbers(firstCycle);
 
     document.querySelector('#splash').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
 
     displayTimeLeft(totalTime);
     document.querySelector('#player_score').textContent = `Score: ${startingScore}`;
-
-    displayNumbers(startingScore);
+    displayNumbers(randNumbers, startingScore, firstCycle);
     timer();
 });
