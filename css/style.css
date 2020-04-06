@@ -32,6 +32,8 @@ main {
 #game_screen {
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 #top_bar {
@@ -62,4 +64,16 @@ main {
 
 .instructions ol {
     text-align: left;
+}
+
+#play_area {
+    flex-grow: 100000;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+}
+
+.numberBox {
+    font-size: 6rem;
 }
