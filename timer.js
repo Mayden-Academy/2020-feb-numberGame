@@ -1,15 +1,15 @@
 timer();
 
-let now = 5;
+let now = 30;
 
 function timer() {
+
     setTimeout(() => {
         if (now > 0) {
             timer();
         }
-        console.log(now);
+        document.querySelector('#game_timer').textContent = now;
         now--;
-
 
     }, 1000);
 }
