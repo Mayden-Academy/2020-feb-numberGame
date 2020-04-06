@@ -12,7 +12,7 @@ function generateNumbers() {
 }
 
 function displayNumbers(allNumbers) {
-    let numbersOnScreen = allNumbers.length;
+    const numbersOnScreen = allNumbers.length;
 
      // using a for loop instead of forEach as the array.pop changes the length over each iteration
      for (let i = 0; i < numbersOnScreen; i++) {
@@ -23,13 +23,15 @@ function displayNumbers(allNumbers) {
         number.setAttribute('class', 'numberBox');
         document.querySelector('#play_area').appendChild(number);
     }
-
 }
 
 document.querySelector('#start').addEventListener('click', () => {
+    const randomNumbers = generateNumbers();
+
+    displayNumbers(randomNumbers);
+
     document.querySelector('#splash').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
+    document.querySelector('#game_timer').textContent = "Timer: 30";
     timer();
-    let randomNumbers = generateNumbers();
-    displayNumbers(randomNumbers);
 });

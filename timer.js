@@ -1,13 +1,14 @@
-let now = 30;
+let timeLeft = 30;
 
 function timer() {
-
     setTimeout(() => {
-        if (now > 0) {
+        if (timeLeft > 0) {
             timer();
+        } else {
+            return;
         }
-        document.querySelector('#game_timer').textContent = "Timer: " + now;
-        now--;
 
+        timeLeft--;
+        document.querySelector('#game_timer').textContent = `Timer: ${timeLeft}`;
     }, 1000);
 }
