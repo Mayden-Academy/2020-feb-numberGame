@@ -1,3 +1,11 @@
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
 function generateEasyNumbers(numbersWanted) {
     let allNumbers = [];
 
@@ -47,21 +55,22 @@ function generateHardNumbers(numbersWanted){
 }
 
 function generateNumbers(cycle = 0) {
+    let numberArray = [];
     let numbersWanted = Math.floor(Math.random() * 3) + 3;
 
     if (cycle < 2) {
-        return generateEasyNumbers(numbersWanted);
+        numberArray = generateEasyNumbers(numbersWanted);
     } else if ((cycle === 3) || (cycle === 4)) {
-        return generateNegativeNumbers(numbersWanted);
+        numberArray = generateNegativeNumbers(numbersWanted);
     } else if ((cycle === 5) || (cycle === 6)) {
-        return generateNegativeNumbers(numbersWanted - 2).concat(generateHardNumbers(2));
+        numberArray = generateNegativeNumbers(numbersWanted - 2).concat(generateHardNumbers(2));
     } else if ((cycle === 7) || (cycle === 8)) {
-        return generateNegativeNumbers(numbersWanted - 3).concat(generateHardNumbers(3));
+        numberArray = generateNegativeNumbers(numbersWanted - 3).concat(generateHardNumbers(3));
     } else {
-        return generateHardNumbers(numbersWanted);
+        numberArray = generateHardNumbers(numbersWanted);
     }
+    return shuffleArray(numberArray);
 }
-
 
 
 
