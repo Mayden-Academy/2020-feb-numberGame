@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="normalize.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Numbers Game</title>
+    <script src="main.js" defer></script>
 </head>
 <body>
     <main>
@@ -13,6 +14,16 @@
             <button id="start" type="button">
                 Start
             </button>
+        </section>
+
+        <section id="game" class="screen">
+            <div id="game_screen">
+                <div id="top_bar">
+                    <div id="game_timer">Timer</div>
+                    <div id="player_score">Score</div>
+                </div>
+                <div id="play_area"></div>
+            </div>
         </section>
         <section class="instructions">
             <h2>Instructions</h2>
@@ -23,15 +34,6 @@
                 <li>A penalty box will appear if you click the cards in the incorrect order. This will stop you from interacting with the game for 3 seconds</li>
                 <li>When time's up, you'll be shown your score and will have the option to replay the game</li>
             </ol>
-        </section>
-        <section id="game" class="screen">
-            <div id="game_screen">
-                <div id="top_bar">
-                    <div id="game_timer">Timer</div>
-                    <div id="player_score">Score</div>
-                </div>
-                <div id="play_area"></div>
-            </div>
         </section>
     </main>
 </body>
