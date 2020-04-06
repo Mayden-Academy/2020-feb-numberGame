@@ -1,4 +1,5 @@
-let timeLeft = 30;
+const totalTime = 30;
+let timeLeft = totalTime;
 
 function timer() {
     setTimeout(() => {
@@ -7,8 +8,11 @@ function timer() {
         } else {
             return;
         }
-
         timeLeft--;
-        document.querySelector('#game_timer').textContent = `Timer: ${timeLeft}`;
+        displayTimeLeft(timeLeft);
     }, 1000);
+}
+
+function displayTimeLeft(time) {
+    document.querySelector('#game_timer').textContent = `Timer: ${time}`;
 }
