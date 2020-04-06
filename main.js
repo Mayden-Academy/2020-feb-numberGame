@@ -21,11 +21,6 @@ function displayNumbers(allNumbers) {
 
         number.textContent = randNumber;
         number.setAttribute('class', 'numberBox');
-        number.style.height = '100px';
-        number.style.width = '100px';
-        number.style.display = 'flex';
-        number.style.alignItems = 'center';
-        number.style.justifyContent = 'center';
 
          document.querySelector('#play_area').appendChild(number);
     }
@@ -34,7 +29,7 @@ function displayNumbers(allNumbers) {
         element.addEventListener('click', () => {
             // placeholder to check functionality
             element.style.backgroundColor = 'red';
-        })
+        });
     });
 }
 
