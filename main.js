@@ -1,12 +1,9 @@
 function generateNumbers() {
-    function generate3to5() {
-        return Math.floor(Math.random() * 3) + 3
-    }
-    let numbersOnScreen = generate3to5();
+    let numbersOnScreen = Math.floor(Math.random() * 3) + 3;
 
     let allNumbers = [];
 
-    for (i=0; i<numbersOnScreen; i++) {
+    for (i = 0; i < numbersOnScreen; i++) {
         let randNumber = Math.floor(Math.random() * 101);
 
         allNumbers.push(randNumber);
