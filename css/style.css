@@ -25,6 +25,33 @@ main {
     align-items: center;
 }
 
+#game {
+    display: none;
+}
+
+#game_screen {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#top_bar {
+    border: 1px solid #000000;
+}
+
+#player_score, #game_timer {
+    margin: 0 20px;
+    font-size: 2rem;
+}
+
+#top_bar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 #start {
     padding: 40px 80px;
     font-size: 2.5rem;
@@ -37,4 +64,16 @@ main {
 
 .instructions ol {
     text-align: left;
+}
+
+#play_area {
+    flex-grow: 100000;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+}
+
+.numberBox {
+    font-size: 6rem;
 }

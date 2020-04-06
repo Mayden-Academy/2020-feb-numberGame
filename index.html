@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Numbers Game</title>
+    <script src="main.js" defer></script>
 </head>
 <body>
     <main>
@@ -12,6 +14,16 @@
             <button id="start" type="button">
                 Start
             </button>
+        </section>
+
+        <section id="game" class="screen">
+            <div id="game_screen">
+                <div id="top_bar">
+                    <div id="game_timer">Timer</div>
+                    <div id="player_score">Score</div>
+                </div>
+                <div id="play_area"></div>
+            </div>
         </section>
         <section class="instructions">
             <h2>Instructions</h2>
