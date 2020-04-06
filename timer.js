@@ -1,5 +1,3 @@
-timer();
-
 let now = 30;
 
 function timer() {
@@ -8,7 +6,7 @@ function timer() {
         if (now > 0) {
             timer();
         }
-        document.querySelector('#game_timer').textContent = now;
+        document.querySelector('#game_timer').textContent = "Timer: " + now;
         now--;
 
     }, 1000);
