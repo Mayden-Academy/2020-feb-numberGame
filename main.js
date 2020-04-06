@@ -13,7 +13,7 @@ function generateNumbers() {
 
 function displayNumbers() {
     const randomNumbers = generateNumbers();
-    const sortedNumbers = randomNumbers.slice(0).sort();
+    const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
     let numbersOnScreen = randomNumbers.length;
      // using a for loop instead of forEach as the array.pop changes the length over each iteration
      for (let i = 0; i < numbersOnScreen; i++) {
