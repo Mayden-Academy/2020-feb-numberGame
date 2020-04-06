@@ -11,7 +11,7 @@ function generateNumbers() {
     return allNumbers;
 }
 
-function displayNumbers() {
+function displayNumbers(currentScore) {
     const randomNumbers = generateNumbers();
     const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
     const numbersOnScreen = randomNumbers.length;
@@ -41,17 +41,24 @@ function displayNumbers() {
             }
 
             if (JSON.stringify(selectedOrder) === JSON.stringify(sortedNumbers)) {
+                ++currentScore;
+                document.querySelector('#player_score').textContent = `Score: ${currentScore}`;
                 document.querySelector('#play_area').textContent = '';
+                displayNumbers(currentScore);
             }
         });
     });
 }
 
 document.querySelector('#start').addEventListener('click', () => {
+    let startingScore = 0;
+
     document.querySelector('#splash').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
 
     displayTimeLeft(totalTime);
-    displayNumbers();
+    document.querySelector('#player_score').textContent = `Score: ${startingScore}`;
+
+    displayNumbers(startingScore);
     timer();
 });
