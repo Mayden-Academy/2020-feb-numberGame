@@ -11,10 +11,10 @@ function generateNumbers() {
     return allNumbers;
 }
 
-// using a for loop instead of forEach as the array.pop changes the length over each iteration
 function displayNumbers(allNumbers) {
     let numbersOnScreen = allNumbers.length;
 
+     // using a for loop instead of forEach as the array.pop changes the length over each iteration
      for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = allNumbers.pop();
         let number = document.createElement('div');
