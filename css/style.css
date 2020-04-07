@@ -79,10 +79,6 @@ main {
     margin-top: 30px;
 }
 
-.instructions ol {
-    text-align: left;
-}
-
 .clicked {
     color: #AAAAAA;
 }
@@ -103,10 +99,9 @@ main {
     background-color: #cc0000;
     flex-grow: 1;
     font-size: 6rem;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
-    display: none;
 }
 
 #game_over {
