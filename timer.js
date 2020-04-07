@@ -1,11 +1,16 @@
 const totalTime = 30;
-let timeLeft = totalTime;
+let timeLeft;
 
 function timer() {
     setTimeout(() => {
-        if (timeLeft > 0) {
+        if (timeLeft > 1) {
             timer();
         } else {
+            let playerScore = document.querySelector('#player_score').textContent.replace('Score: ', '');
+
+            makeScreenFlex('#game_over');
+            hideScreen('#game');
+            document.querySelector('#score_box').textContent = `Score: ${playerScore}`;
             return;
         }
         timeLeft--;

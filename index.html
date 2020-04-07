@@ -13,8 +13,8 @@
 <body>
     <main>
         <h1>Numbers Game</h1>
-        <section id="splash" class="screen">
-            <button id="start" type="button">
+        <section id="splash_screen" class="screen">
+            <button id="start" class="play_button" type="button">
                 Start
             </button>
         </section>
@@ -27,6 +27,13 @@
                 <div id="play_area"></div>
                 <div id="penaltyScreen">Time Penalty! 2s</div>
             </div>
+        </section>
+        <section id="game_over" class="screen">
+                <h2>Time's Up!!!</h2>
+                <div id="score_box"></div>
+                <button id="game_repeat" class="play_button" type="button">
+                    Try Again?
+                </button>
         </section>
         <section class="instructions">
             <h2>Instructions</h2>
