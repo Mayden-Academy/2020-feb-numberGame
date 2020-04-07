@@ -3,7 +3,7 @@ let timeLeft;
 
 function timer() {
     setTimeout(() => {
-        if (timeLeft > 0) {
+        if (timeLeft > 1) {
             timer();
         } else {
             let playerScore = document.querySelector('#player_score').textContent.replace('Score: ', '');
