@@ -71,7 +71,7 @@ main {
 }
 
 #play_area {
-    flex-grow: 100000;
+    flex-grow: 1;
     display: flex;
     justify-content: space-around;
     width: 100%;
@@ -82,6 +82,16 @@ main {
     font-size: 6rem;
 }
 
+#penaltyScreen {
+    background-color: #cc0000;
+    flex-grow: 1;
+    font-size: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
 .numberBox.clicked:hover {
     cursor: not-allowed;
 }
@@ -89,3 +99,4 @@ main {
 .numberBox:hover {
     cursor: pointer;
 }
+
