@@ -80,16 +80,15 @@ main {
 }
 
 #play_area {
-    display: grid;
-    height: calc(100% - 3rem);
-    grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
-    justify-content: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .placeholder {
-    height: 100%;
+    width: 25%;
+    height: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
