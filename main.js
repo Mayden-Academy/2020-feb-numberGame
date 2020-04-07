@@ -10,16 +10,11 @@ function shuffleArray(array) {
 
 function arrayCheckEqualsAsc(array) {
     const ascArray = array.slice(0).sort((a, b) => a - b);
-    
-    if (array.length !== ascArray.length) {
-        return false;
-    }
 
     for (let i = 0, l = array.length; i < l; i++) {
         if (array[i] !== ascArray[i]) {
             return false;
         }
-
     }
 
     return true;
@@ -27,10 +22,6 @@ function arrayCheckEqualsAsc(array) {
 
 function arrayCheckEqualsDesc(array) {
     const descArray = array.slice(0).sort((a, b) => b - a);
-    
-    if (array.length !== descArray.length) {
-        return false;
-    }
 
     for (let i = 0, l = array.length; i < l; i++) {
         if (array[i] !== descArray[i]) {
