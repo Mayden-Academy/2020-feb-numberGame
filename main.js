@@ -2,7 +2,7 @@ function generateNumbers() {
     let numbersOnScreen = Math.floor(Math.random() * 3) + 3;
     let allNumbers = [];
 
-    for (i = 0; i < numbersOnScreen; i++) {
+    for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = Math.floor(Math.random() * 101);
 
         allNumbers.push(randNumber);
@@ -11,26 +11,67 @@ function generateNumbers() {
     return allNumbers;
 }
 
-function displayNumbers(allNumbers) {
-    let numbersOnScreen = allNumbers.length;
+function displayNumbers(randomNumbers) {
+    const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
+    const numbersOnScreen = randomNumbers.length;
+    let selectedOrder = [];
 
-    for (i = 0; i < numbersOnScreen; i++) {
-        let randNumber = allNumbers.pop();
+    // using a for loop instead of forEach as the array.pop changes the length over each iteration
+    for (let i = 0; i < numbersOnScreen; i++) {
+        let randNumber = randomNumbers.pop();
         let number = document.createElement('div');
 
         number.textContent = randNumber;
         number.setAttribute('class', 'numberBox');
+
         document.querySelector('#play_area').appendChild(number);
     }
+
+    document.querySelectorAll('.numberBox').forEach((numberBox) => {
+        numberBox.addEventListener('click', () => {
+            const { textContent, classList } = numberBox;
+            const numberBoxValue = parseInt(textContent);
+
+            if (numberHasNotBeenClicked(classList)) {
+                if (isNextNumber(sortedNumbers, selectedOrder, numberBoxValue)) {
+                    selectedOrder.push(numberBoxValue);
+                    classList.add('clicked');
+
+                    if (allNumbersClicked(selectedOrder, sortedNumbers)) {
+                        document.querySelector('#play_area').textContent = '';
+                    }
+                } else {
+                    document.querySelectorAll('.clicked').forEach((chosenNumber) => {
+                        chosenNumber.classList.remove('clicked');
+                        selectedOrder = [];
+                    });
+                }
+            }
+        });
+    });
 }
 
-let randomNumbers = generateNumbers();
+function numberHasNotBeenClicked(elementClass) {
+    return (!elementClass.contains('clicked'));
+}
 
-displayNumbers(randomNumbers);
+function isNextNumber(sortedNumbers, selectedOrder, numberBoxValue) {
+    return (sortedNumbers[selectedOrder.length] === numberBoxValue);
+}
+
+function allNumbersClicked(selectedOrder, sortedNumbers) {
+    return (selectedOrder.length === sortedNumbers.length);
+}
 
 document.querySelector('#start').addEventListener('click', () => {
+    const randomNumbers = generateNumbers();
+
     document.querySelector('#splash').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
+
+    displayTimeLeft(totalTime);
+    displayNumbers(randomNumbers);
+    timer();
 });
 
 function timePenalty() {
@@ -44,4 +85,4 @@ function timePenalty() {
         playArea.style.display = 'flex';
         penaltyScreen.style.display = "none"
     }, 2000);
-}
+};
