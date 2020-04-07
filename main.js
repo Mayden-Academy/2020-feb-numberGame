@@ -1,3 +1,23 @@
+// This is used to pre-fill the grid, the dot is used to act as content to space it out.
+const grid = `
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+    <div class="placeholder">.</div>
+`;
+
 function generateNumbers() {
     let numbersOnScreen = Math.floor(Math.random() * 3) + 3;
     let allNumbers = [];
@@ -16,17 +36,15 @@ function displayNumbers(randomNumbers, currentScore) {
     const numbersOnScreen = randomNumbers.length;
     let selectedOrder = [];
 
-    document.querySelector('#play_area').textContent = '';
+    document.querySelector('#play_area').innerHTML = grid;
 
     // using a for loop instead of forEach as the array.pop changes the length over each iteration
     for (let i = 0; i < numbersOnScreen; i++) {
-        let randNumber = randomNumbers.pop();
-        let number = document.createElement('div');
+        const cards = document.querySelectorAll('.placeholder:not(.numberBox)');
+        const position = Math.floor(Math.random() * Math.floor(cards.length));
 
-        number.textContent = randNumber;
-        number.setAttribute('class', 'numberBox');
-
-        document.querySelector('#play_area').appendChild(number);
+        cards[position].textContent = randomNumbers.pop();
+        cards[position].classList.add('numberBox');
     }
 
     document.querySelectorAll('.numberBox').forEach((numberBox) => {
@@ -50,6 +68,7 @@ function displayNumbers(randomNumbers, currentScore) {
                     }
                 } else {
                     timePenalty();
+
                     document.querySelectorAll('.clicked').forEach((chosenNumber) => {
                         chosenNumber.classList.remove('clicked');
                         selectedOrder = [];
@@ -80,14 +99,20 @@ function makeScreenFlex(cssTag) {
     document.querySelector(cssTag).style.display = 'flex';
 }
 
+function makeScreenGrid(cssTag) {
+    document.querySelector(cssTag).style.display = 'grid';
+}
+
 function playGame() {
     const startingScore = 0;
     const randomNumbers = generateNumbers();
+
     timeLeft = totalTime; // restarts the timer to the maximum timer value when starting a new game
 
     hideScreen('#splash_screen');
     hideScreen('#game_over');
     makeScreenFlex('#game');
+
     document.querySelector('#player_score').textContent = `Score: ${startingScore}`;
 
     displayTimeLeft(timeLeft);
@@ -100,7 +125,7 @@ function timePenalty() {
     makeScreenFlex('#penaltyScreen');
 
     setTimeout(() => {
-        makeScreenFlex('#play_area');
+        makeScreenGrid('#play_area');
         hideScreen('#penaltyScreen');
     }, 2000);
 }

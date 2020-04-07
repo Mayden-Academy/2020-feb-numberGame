@@ -79,20 +79,30 @@ main {
     margin-top: 30px;
 }
 
-.clicked {
-    color: #AAAAAA;
+#play_area {
+    display: grid;
+    height: calc(100% - 3rem);
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    justify-content: stretch;
 }
 
-#play_area {
-    flex-grow: 1;
+.placeholder {
+    height: 100%;
     display: flex;
-    justify-content: space-around;
-    width: 100%;
+    justify-content: center;
     align-items: center;
+    font-size: 6rem;
+    color: transparent;
 }
 
 .numberBox {
-    font-size: 6rem;
+    color: #000000;
+}
+
+.clicked {
+    color: #AAAAAA;
 }
 
 #penaltyScreen {
