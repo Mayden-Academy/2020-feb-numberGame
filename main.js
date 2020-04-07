@@ -72,14 +72,22 @@ function allNumbersClicked(selectedOrder, sortedNumbers) {
     return (selectedOrder.length === sortedNumbers.length);
 }
 
+function hideScreen(cssTag) {
+    document.querySelector(cssTag).style.display = 'none';
+}
+
+function makeScreenFlex(cssTag) {
+    document.querySelector(cssTag).style.display = 'flex';
+}
+
 function playGame() {
     const startingScore = 0;
     const randomNumbers = generateNumbers();
     timeLeft = totalTime; // restarts the timer to the maximum timer value when starting a new game
 
-    document.querySelector('#splash_screen').style.display = 'none';
-    document.querySelector('#game_over').style.display = 'none';
-    document.querySelector('#game').style.display = 'block';
+    hideScreen('#splash_screen');
+    hideScreen('#game_over');
+    makeScreenFlex('#game');
     document.querySelector('#player_score').textContent = `Score: ${startingScore}`;
 
     displayTimeLeft(timeLeft);
@@ -88,15 +96,12 @@ function playGame() {
 }
 
 function timePenalty() {
-    const playArea = document.querySelector('#play_area');
-    const penaltyScreen = document.querySelector('#penaltyScreen');
-
-    playArea.style.display = 'none';
-    penaltyScreen.style.display = 'flex';
+    hideScreen('#play_area');
+    makeScreenFlex('#penaltyScreen');
 
     setTimeout(() => {
-        playArea.style.display = 'flex';
-        penaltyScreen.style.display = 'none';
+        makeScreenFlex('#play_area');
+        hideScreen('#penaltyScreen');
     }, 2000);
 }
 

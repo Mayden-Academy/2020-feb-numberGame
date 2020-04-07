@@ -8,8 +8,8 @@ function timer() {
         } else {
             let playerScore = document.querySelector('#player_score').textContent.replace('Score: ', '');
 
-            document.querySelector('#game_over').style.display = 'flex';
-            document.querySelector('#game').style.display = 'none';
+            makeScreenFlex('#game_over');
+            hideScreen('#game');
             document.querySelector('#score_box').textContent = `Score: ${playerScore}`;
             return;
         }
