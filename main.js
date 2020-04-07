@@ -50,6 +50,7 @@ function displayNumbers(randomNumbers, currentScore) {
                         displayNumbers(randomNumbers, currentScore);
                     }
                 } else {
+                    timePenalty();
                     document.querySelectorAll('.clicked').forEach((chosenNumber) => {
                         chosenNumber.classList.remove('clicked');
                         selectedOrder = [];
@@ -88,4 +89,17 @@ function playGame() {
     displayTimeLeft(timeLeft);
     displayNumbers(randomNumbers, startingScore);
     timer();
-}
+};
+
+function timePenalty() {
+    const playArea = document.querySelector('#play_area');
+    const penaltyScreen = document.querySelector('#penaltyScreen');
+
+    playArea.style.display = 'none';
+    penaltyScreen.style.display = 'flex';
+
+    setTimeout(() => {
+        playArea.style.display = 'flex';
+        penaltyScreen.style.display = 'none';
+    }, 2000);
+};
