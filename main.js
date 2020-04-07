@@ -80,7 +80,7 @@ function generateHardNumbers(numbersWanted){
             randNumber = parseInt(`${numberSelect}${randSecondNumber}`);
         }
 
-        if(Math.random() < 0.5) {
+        if (Math.random() < 0.5) {
            randNumber = (0 - randNumber);
         }
 
@@ -139,7 +139,7 @@ function displayNumbers(randomNumbers, currentScore) {
 
     document.querySelectorAll('.numberBox').forEach((numberBox) => {
         numberBox.addEventListener('click', () => {
-            const {textContent, classList} = numberBox;
+            const { textContent, classList } = numberBox;
             const numberBoxValue = parseInt(textContent);
 
             if (numberHasNotBeenClicked(classList)) {
