@@ -20,6 +20,9 @@ main {
 .screen {
     height: 800px;
     border: 1px solid #000000;
+}
+
+#splash_screen {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,6 +69,16 @@ main {
     justify-content: space-between;
 }
 
+.play_button {
+    padding: 40px 80px;
+    font-size: 2.5rem;
+}
+
+.instructions {
+    border: 1px solid #000000;
+    margin-top: 30px;
+}
+
 .clicked {
     color: #AAAAAA;
 }
@@ -86,10 +99,22 @@ main {
     background-color: #cc0000;
     flex-grow: 1;
     font-size: 6rem;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
+}
+
+#game_over {
+    font-size: 4rem;
+    margin-top: 30px;
     display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#score_box, .play_button, h2 {
+    margin: 40px;
 }
 
 .numberBox.clicked:hover {
@@ -99,4 +124,3 @@ main {
 .numberBox:hover {
     cursor: pointer;
 }
-

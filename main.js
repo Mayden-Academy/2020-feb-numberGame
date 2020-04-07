@@ -16,6 +16,8 @@ function displayNumbers(randomNumbers, currentScore) {
     const numbersOnScreen = randomNumbers.length;
     let selectedOrder = [];
 
+    document.querySelector('#play_area').textContent = '';
+
     // using a for loop instead of forEach as the array.pop changes the length over each iteration
     for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = randomNumbers.pop();
@@ -43,7 +45,6 @@ function displayNumbers(randomNumbers, currentScore) {
                         ++currentScore;
 
                         document.querySelector('#player_score').textContent = `Score: ${currentScore}`;
-                        document.querySelector('#play_area').textContent = '';
 
                         displayNumbers(randomNumbers, currentScore);
                     }
@@ -71,28 +72,41 @@ function allNumbersClicked(selectedOrder, sortedNumbers) {
     return (selectedOrder.length === sortedNumbers.length);
 }
 
-document.querySelector('#start').addEventListener('click', () => {
+function hideScreen(cssTag) {
+    document.querySelector(cssTag).style.display = 'none';
+}
+
+function makeScreenFlex(cssTag) {
+    document.querySelector(cssTag).style.display = 'flex';
+}
+
+function playGame() {
     const startingScore = 0;
     const randomNumbers = generateNumbers();
+    timeLeft = totalTime; // restarts the timer to the maximum timer value when starting a new game
 
-    document.querySelector('#splash').style.display = 'none';
-    document.querySelector('#game').style.display = 'block';
+    hideScreen('#splash_screen');
+    hideScreen('#game_over');
+    makeScreenFlex('#game');
     document.querySelector('#player_score').textContent = `Score: ${startingScore}`;
 
-    displayTimeLeft(totalTime);
+    displayTimeLeft(timeLeft);
     displayNumbers(randomNumbers, startingScore);
     timer();
-});
+}
 
 function timePenalty() {
-    const playArea = document.querySelector('#play_area');
-    const penaltyScreen = document.querySelector('#penaltyScreen');
-
-    playArea.style.display = 'none';
-    penaltyScreen.style.display = 'flex';
+    hideScreen('#play_area');
+    makeScreenFlex('#penaltyScreen');
 
     setTimeout(() => {
-        playArea.style.display = 'flex';
-        penaltyScreen.style.display = 'none';
+        makeScreenFlex('#play_area');
+        hideScreen('#penaltyScreen');
     }, 2000);
-};
+}
+
+document.querySelectorAll('.play_button').forEach((button) => {
+    button.addEventListener('click', playGame);
+});
+
+
