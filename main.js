@@ -8,13 +8,32 @@ function shuffleArray(array) {
     return array;
 }
 
-function arrayCheckEquals(array1, array2) {
-    if (array1.length !== array2.length) {
+function arrayCheckEqualsAsc(array) {
+    const ascArray = array.slice(0).sort((a, b) => a - b);
+    
+    if (array.length !== ascArray.length) {
         return false;
     }
 
-    for (let i = 0, l = array1.length; i < l; i++) {
-        if (array1[i] !== array2[i]) {
+    for (let i = 0, l = array.length; i < l; i++) {
+        if (array[i] !== ascArray[i]) {
+            return false;
+        }
+
+    }
+
+    return true;
+}
+
+function arrayCheckEqualsDesc(array) {
+    const descArray = array.slice(0).sort((a, b) => b - a);
+    
+    if (array.length !== descArray.length) {
+        return false;
+    }
+
+    for (let i = 0, l = array.length; i < l; i++) {
+        if (array[i] !== descArray[i]) {
             return false;
         }
     }
@@ -35,10 +54,7 @@ function generateNumbers() {
             allNumbers.push(randNumber);
         }
     }
-
-    const sortedNumbers = allNumbers.slice(0).sort((a, b) => a - b);
-
-    while (arrayCheckEquals(allNumbers, sortedNumbers)) {
+    while ((arrayCheckEqualsAsc(allNumbers)) || (arrayCheckEqualsDesc(allNumbers))) {
         allNumbers = shuffleArray(allNumbers);
     }
 
