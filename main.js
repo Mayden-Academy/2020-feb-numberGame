@@ -49,6 +49,7 @@ function displayNumbers(randomNumbers, currentScore) {
                     }
                 } else {
                     document.querySelectorAll('.clicked').forEach((chosenNumber) => {
+                        timePenalty();
                         chosenNumber.classList.remove('clicked');
                         selectedOrder = [];
                     });
