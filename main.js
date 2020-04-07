@@ -73,16 +73,12 @@ function allNumbersClicked(selectedOrder, sortedNumbers) {
     return (selectedOrder.length === sortedNumbers.length);
 }
 
-document.querySelectorAll('.play_button').forEach( (button) => {
-    button.addEventListener('click', playGame);
-});
-
 function playGame() {
-    timeLeft = totalTime;
     const startingScore = 0;
     const randomNumbers = generateNumbers();
+    timeLeft = totalTime;
 
-    document.querySelector('#splash').style.display = 'none';
+    document.querySelector('#splash_screen').style.display = 'none';
     document.querySelector('#game_over').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
     document.querySelector('#player_score').textContent = `Score: ${startingScore}`;
@@ -90,7 +86,7 @@ function playGame() {
     displayTimeLeft(timeLeft);
     displayNumbers(randomNumbers, startingScore);
     timer();
-};
+}
 
 function timePenalty() {
     const playArea = document.querySelector('#play_area');
@@ -103,4 +99,10 @@ function timePenalty() {
         playArea.style.display = 'flex';
         penaltyScreen.style.display = 'none';
     }, 2000);
-};
+}
+
+document.querySelectorAll('.play_button').forEach((button) => {
+    button.addEventListener('click', playGame);
+});
+
+

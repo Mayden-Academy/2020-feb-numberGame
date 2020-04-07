@@ -22,7 +22,7 @@ main {
     border: 1px solid #000000;
 }
 
-#splash {
+#splash_screen {
     display: flex;
     justify-content: center;
     align-items: center;
