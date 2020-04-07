@@ -29,6 +29,7 @@ function arrayCheckEquals(array1, array2) {
 function generateNumbers() {
     let numbersOnScreen = Math.floor(Math.random() * 3) + 3;
     let allNumbers = [];
+    numbersOnScreen = 3;
 
     for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = Math.floor(Math.random() * 101);
@@ -42,11 +43,14 @@ function generateNumbers() {
 
     const sortedNumbers = allNumbers.slice(0).sort((a, b) => a - b);
 
-    while (!(arrayCheckEquals(allNumbers, sortedNumbers))) {
+    while (arrayCheckEquals(allNumbers, sortedNumbers)) {
         allNumbers = shuffleArray(allNumbers);
     }
 
     return allNumbers;
+}
+for (let i = 0; i < 15; i++) {
+    generateNumbers()
 }
 
 function displayNumbers(randomNumbers, currentScore) {
