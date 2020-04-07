@@ -1,3 +1,13 @@
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    return array;
+}
+
 function arrayCheckEquals(array1, array2) {
     if ((!array1) || (!array2)) {
         return false;
@@ -21,7 +31,6 @@ function generateNumbers() {
 
     for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = Math.floor(Math.random() * 101);
-        let check = true;
 
         if (allNumbers.includes(randNumber)) {
             i--;
@@ -34,7 +43,7 @@ function generateNumbers() {
     if (arrayCheckEquals(allNumbers, sortedNumbers)){
         return allNumbers;
     } else {
-        arrayShuffle(allNumbers);
+        shuffleArray(allNumbers);
 
         return allNumbers;
     }
