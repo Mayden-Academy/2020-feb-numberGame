@@ -32,7 +32,7 @@ function displayNumbers(randomNumbers) {
             const { textContent, classList } = numberBox;
             const numberBoxValue = parseInt(textContent);
 
-            if (numberHasBeenClicked(classList)) {
+            if (numberHasNotBeenClicked(classList)) {
                 if (isNextNumber(sortedNumbers, selectedOrder, numberBoxValue)) {
                     selectedOrder.push(numberBoxValue);
                     classList.add('clicked');
@@ -51,16 +51,16 @@ function displayNumbers(randomNumbers) {
     });
 }
 
-function numberHasBeenClicked(elementClass) {
+function numberHasNotBeenClicked(elementClass) {
     return (!elementClass.contains('clicked'));
 }
 
 function isNextNumber(sortedNumbers, selectedOrder, numberBoxValue) {
-    return sortedNumbers[selectedOrder.length] === numberBoxValue;
+    return (sortedNumbers[selectedOrder.length] === numberBoxValue);
 }
 
 function allNumbersClicked(selectedOrder, sortedNumbers) {
-    return selectedOrder.length === sortedNumbers.length;
+    return (selectedOrder.length === sortedNumbers.length);
 }
 
 document.querySelector('#start').addEventListener('click', () => {
