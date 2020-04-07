@@ -36,15 +36,15 @@ function displayNumbers(randomNumbers) {
                 if (isNextNumber(sortedNumbers, selectedOrder, numberBoxValue)) {
                     selectedOrder.push(numberBoxValue);
                     classList.add('clicked');
+
+                    if (allNumbersClicked(selectedOrder, sortedNumbers)) {
+                        document.querySelector('#play_area').textContent = '';
+                    }
                 } else {
                     document.querySelectorAll('.clicked').forEach((chosenNumber) => {
                         chosenNumber.classList.remove('clicked');
                         selectedOrder = [];
                     });
-                }
-
-                if (allNumbersClicked(selectedOrder, sortedNumbers)) {
-                    document.querySelector('#play_area').textContent = '';
                 }
             }
         });
