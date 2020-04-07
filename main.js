@@ -93,6 +93,6 @@ function timePenalty() {
 
     setTimeout(() => {
         playArea.style.display = 'flex';
-        penaltyScreen.style.display = "none"
+        penaltyScreen.style.display = 'none';
     }, 2000);
 };
