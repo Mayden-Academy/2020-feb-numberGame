@@ -48,7 +48,7 @@ function generateHardNumbers(numbersWanted){
             randNumber = parseInt(`${numberSelect}${randSecondNumber}`);
         }
 
-        if(Math.random() > 0.5) {
+        if(Math.random() < 0.5) {
             allNumbers.push(randNumber);
         } else {
             allNumbers.push(0 - randNumber);
@@ -78,7 +78,6 @@ function generateNumbers(score = 0) {
     
     return shuffleArray(numberArray);
 }
-
 
 function displayNumbers(randomNumbers, currentScore) {
     const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
