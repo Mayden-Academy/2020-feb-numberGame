@@ -45,7 +45,6 @@ function displayNumbers(randomNumbers, currentScore) {
                         ++currentScore;
 
                         document.querySelector('#player_score').textContent = `Score: ${currentScore}`;
-                        document.querySelector('#play_area').textContent = '';
 
                         displayNumbers(randomNumbers, currentScore);
                     }
@@ -76,7 +75,7 @@ function allNumbersClicked(selectedOrder, sortedNumbers) {
 function playGame() {
     const startingScore = 0;
     const randomNumbers = generateNumbers();
-    timeLeft = totalTime;
+    timeLeft = totalTime; // restarts the timer to the maximum timer value when starting a new game
 
     document.querySelector('#splash_screen').style.display = 'none';
     document.querySelector('#game_over').style.display = 'none';
