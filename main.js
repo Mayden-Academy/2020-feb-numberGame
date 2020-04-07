@@ -85,13 +85,13 @@ document.querySelector('#start').addEventListener('click', () => {
 });
 
 function timePenalty() {
-    let playArea = document.querySelector('#play_area');
-    let penaltyScreen = document.querySelector('#penaltyScreen');
+    const playArea = document.querySelector('#play_area');
+    const penaltyScreen = document.querySelector('#penaltyScreen');
 
     playArea.style.display = 'none';
     penaltyScreen.style.display = 'flex';
 
-    setTimeout((evt) => {
+    setTimeout(() => {
         playArea.style.display = 'flex';
         penaltyScreen.style.display = "none"
     }, 2000);
