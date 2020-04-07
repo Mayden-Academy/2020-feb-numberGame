@@ -8,17 +8,23 @@ function shuffleArray(array) {
     return array;
 }
 
-function arrayCheckEquals(array1, array2) {
-    if ((!array1) || (!array2)) {
-        return false;
+function arrayCheckEqualsAsc(array) {
+    const ascArray = array.slice(0).sort((a, b) => a - b);
+
+    for (let i = 0, l = array.length; i < l; i++) {
+        if (array[i] !== ascArray[i]) {
+            return false;
+        }
     }
 
-    if (array1.length !== array2.length) {
-        return false;
-    }
+    return true;
+}
 
-    for (let i = 0, l = array1.length; i < l; i++) {
-        if (array1[i] !== array2[i]) {
+function arrayCheckEqualsDesc(array) {
+    const descArray = array.slice(0).sort((a, b) => b - a);
+
+    for (let i = 0, l = array.length; i < l; i++) {
+        if (array[i] !== descArray[i]) {
             return false;
         }
     }
@@ -33,7 +39,7 @@ function generateEasyNumbers(numbersWanted) {
         let randNumber = Math.floor(Math.random() * 101);
 
         if (allNumbers.includes(randNumber)) {
-            i--;
+            i--; //this makes the for loop run an additional time.
         } else {
             allNumbers.push(randNumber);
         }
@@ -105,9 +111,8 @@ function generateNumbers(score = 0) {
     } else {
         numberArray = generateHardNumbers(numbersWanted);
     }
-    const sortedNumbers = numberArray.slice(0).sort((a, b) => a - b);
 
-    while (arrayCheckEquals(numberArray, sortedNumbers)) {
+    while ((arrayCheckEqualsAsc(numberArray)) || (arrayCheckEqualsDesc(numberArray))) {
         numberArray = shuffleArray(numberArray);
     }
     
