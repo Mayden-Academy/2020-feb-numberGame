@@ -1,3 +1,31 @@
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    return array;
+}
+
+function arrayCheckEquals(array1, array2) {
+    if ((!array1) || (!array2)) {
+        return false;
+    }
+
+    if (array1.length !== array2.length) {
+        return false;
+    }
+
+    for (let i = 0, l = array1.length; i < l; i++) {
+        if (array1[i] !== array2[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 function generateNumbers() {
     let numbersOnScreen = Math.floor(Math.random() * 3) + 3;
     let allNumbers = [];
@@ -5,7 +33,17 @@ function generateNumbers() {
     for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = Math.floor(Math.random() * 101);
 
-        allNumbers.push(randNumber);
+        if (allNumbers.includes(randNumber)) {
+            i--;
+        } else {
+            allNumbers.push(randNumber);
+        }
+    }
+
+    const sortedNumbers = allNumbers.slice(0).sort((a, b) => a - b);
+
+    while (arrayCheckEquals(allNumbers, sortedNumbers)) {
+        allNumbers = shuffleArray(allNumbers);
     }
 
     return allNumbers;
