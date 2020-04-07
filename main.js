@@ -1,3 +1,37 @@
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    return array;
+}
+
+function arrayCheckEqualsAsc(array) {
+    const ascArray = array.slice(0).sort((a, b) => a - b);
+
+    for (let i = 0, l = array.length; i < l; i++) {
+        if (array[i] !== ascArray[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function arrayCheckEqualsDesc(array) {
+    const descArray = array.slice(0).sort((a, b) => b - a);
+
+    for (let i = 0, l = array.length; i < l; i++) {
+        if (array[i] !== descArray[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 function generateNumbers() {
     let numbersOnScreen = Math.floor(Math.random() * 3) + 3;
     let allNumbers = [];
@@ -5,7 +39,14 @@ function generateNumbers() {
     for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = Math.floor(Math.random() * 101);
 
-        allNumbers.push(randNumber);
+        if (allNumbers.includes(randNumber)) {
+            i--; //this makes the for loop run an additional time.
+        } else {
+            allNumbers.push(randNumber);
+        }
+    }
+    while ((arrayCheckEqualsAsc(allNumbers)) || (arrayCheckEqualsDesc(allNumbers))) {
+        allNumbers = shuffleArray(allNumbers);
     }
 
     return allNumbers;
