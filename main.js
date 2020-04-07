@@ -1,8 +1,10 @@
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
+
         [array[i], array[j]] = [array[j], array[i]];
     }
+    
     return array;
 }
 
@@ -42,6 +44,7 @@ function generateHardNumbers(numbersWanted){
             randNumber = numberSelect;
         } else {
             let randSecondNumber = Math.floor(Math.random() * 10);
+
             randNumber = parseInt("" + numberSelect + randSecondNumber);
         }
 
@@ -51,6 +54,7 @@ function generateHardNumbers(numbersWanted){
             allNumbers.push(0 - randNumber);
         }
     }
+
     return allNumbers;
 }
 
