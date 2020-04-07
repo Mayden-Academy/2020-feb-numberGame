@@ -73,8 +73,9 @@ function allNumbersClicked(selectedOrder, sortedNumbers) {
     return (selectedOrder.length === sortedNumbers.length);
 }
 
-document.querySelector('#start').addEventListener('click', playGame);
-document.querySelector('#game_repeat').addEventListener('click', playGame);
+document.querySelectorAll('.play_button').forEach( (button) => {
+    button.addEventListener('click', playGame);
+});
 
 function playGame() {
     timeLeft = totalTime;
