@@ -42,10 +42,10 @@ function displayNumbers(randomNumbers) {
                         selectedOrder = [];
                     });
                 }
-            }
 
-            if (allNumbersClicked(selectedOrder, sortedNumbers)) {
-                document.querySelector('#play_area').textContent = '';
+                if (allNumbersClicked(selectedOrder, sortedNumbers)) {
+                    document.querySelector('#play_area').textContent = '';
+                }
             }
         });
     });
