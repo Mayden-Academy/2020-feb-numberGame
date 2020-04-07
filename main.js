@@ -11,8 +11,7 @@ function generateNumbers() {
     return allNumbers;
 }
 
-function displayNumbers(currentScore) {
-    const randomNumbers = generateNumbers();
+function displayNumbers(randomNumbers, currentScore) {
     const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
     const numbersOnScreen = randomNumbers.length;
     let selectedOrder = [];
@@ -28,42 +27,58 @@ function displayNumbers(currentScore) {
         document.querySelector('#play_area').appendChild(number);
     }
 
-    document.querySelectorAll('.numberBox').forEach((element) => {
-        element.addEventListener('click', () => {
-            const { textContent, classList } = element;
-            const value = parseInt(textContent);
+    document.querySelectorAll('.numberBox').forEach((numberBox) => {
+        numberBox.addEventListener('click', () => {
+            const { textContent, classList } = numberBox;
+            const numberBoxValue = parseInt(textContent);
 
-            if (!classList.contains('chosen_number')) {
-                if (sortedNumbers[selectedOrder.length] === value) {
-                    selectedOrder.push(value);
-                    classList.add('chosen_number');
+            if (numberHasNotBeenClicked(classList)) {
+                if (isNextNumber(sortedNumbers, selectedOrder, numberBoxValue)) {
+                    selectedOrder.push(numberBoxValue);
+                    classList.add('clicked');
+
+                    if (allNumbersClicked(selectedOrder, sortedNumbers)) {
+                        const randomNumbers = generateNumbers();
+
+                        ++currentScore;
+
+                        document.querySelector('#player_score').textContent = `Score: ${currentScore}`;
+                        document.querySelector('#play_area').textContent = '';
+
+                        displayNumbers(randomNumbers, currentScore);
+                    }
                 } else {
-                    document.querySelectorAll('.chosen_number').forEach((chosenNumber) => {
-                        chosenNumber.classList.remove('chosen_number');
+                    document.querySelectorAll('.clicked').forEach((chosenNumber) => {
+                        chosenNumber.classList.remove('clicked');
                         selectedOrder = [];
                     });
                 }
-            }
-
-            if (JSON.stringify(selectedOrder) === JSON.stringify(sortedNumbers)) {
-                ++currentScore;
-                document.querySelector('#player_score').textContent = `Score: ${currentScore}`;
-                document.querySelector('#play_area').textContent = '';
-                displayNumbers(currentScore);
             }
         });
     });
 }
 
+function numberHasNotBeenClicked(elementClass) {
+    return (!elementClass.contains('clicked'));
+}
+
+function isNextNumber(sortedNumbers, selectedOrder, numberBoxValue) {
+    return (sortedNumbers[selectedOrder.length] === numberBoxValue);
+}
+
+function allNumbersClicked(selectedOrder, sortedNumbers) {
+    return (selectedOrder.length === sortedNumbers.length);
+}
+
 document.querySelector('#start').addEventListener('click', () => {
     const startingScore = 0;
+    const randomNumbers = generateNumbers();
 
     document.querySelector('#splash').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
-
-    displayTimeLeft(totalTime);
     document.querySelector('#player_score').textContent = `Score: ${startingScore}`;
 
-    displayNumbers(startingScore);
+    displayTimeLeft(totalTime);
+    displayNumbers(randomNumbers, startingScore);
     timer();
 });
