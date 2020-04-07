@@ -32,10 +32,8 @@ function displayNumbers(randomNumbers) {
             const { textContent, classList } = numberBox;
             const numberBoxValue = parseInt(textContent);
 
-            // check if already clicked
-            if (!classList.contains('clicked')) {
-                // check if correct number
-                if (sortedNumbers[selectedOrder.length] === numberBoxValue) {
+            if (numberHasBeenClicked(classList)) {
+                if (isNextNumber(sortedNumbers, selectedOrder, numberBoxValue)) {
                     selectedOrder.push(numberBoxValue);
                     classList.add('clicked');
                 } else {
@@ -46,11 +44,23 @@ function displayNumbers(randomNumbers) {
                 }
             }
 
-            if (selectedOrder.length === sortedNumbers.length) {
+            if (allNumbersClicked(selectedOrder, sortedNumbers)) {
                 document.querySelector('#play_area').textContent = '';
             }
         });
     });
+}
+
+function numberHasBeenClicked(elementClass) {
+    return (!elementClass.contains('clicked'));
+}
+
+function isNextNumber(sortedNumbers, selectedOrder, numberBoxValue) {
+    return sortedNumbers[selectedOrder.length] === numberBoxValue;
+}
+
+function allNumbersClicked(selectedOrder, sortedNumbers) {
+    return selectedOrder.length === sortedNumbers.length;
 }
 
 document.querySelector('#start').addEventListener('click', () => {
