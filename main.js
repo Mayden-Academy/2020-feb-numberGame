@@ -4,8 +4,13 @@ function generateNumbers() {
 
     for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = Math.floor(Math.random() * 101);
+        let check = true;
 
-        allNumbers.push(randNumber);
+        if (allNumbers.includes(randNumber)) {
+            i--;
+        } else {
+            allNumbers.push(randNumber);
+        }
     }
 
     return allNumbers;
