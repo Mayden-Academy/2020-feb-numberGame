@@ -9,10 +9,6 @@ function shuffleArray(array) {
 }
 
 function arrayCheckEquals(array1, array2) {
-    if ((!array1) || (!array2)) {
-        return false;
-    }
-
     if (array1.length !== array2.length) {
         return false;
     }
@@ -34,7 +30,7 @@ function generateNumbers() {
         let randNumber = Math.floor(Math.random() * 101);
 
         if (allNumbers.includes(randNumber)) {
-            i--;
+            i--; //this makes the for loop run an additional time.
         } else {
             allNumbers.push(randNumber);
         }
