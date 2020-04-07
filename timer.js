@@ -1,4 +1,4 @@
-const totalTime = 3;
+const totalTime = 30;
 let timeLeft;
 
 function timer() {
