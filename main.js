@@ -45,7 +45,7 @@ function generateHardNumbers(numbersWanted){
         } else {
             let randSecondNumber = Math.floor(Math.random() * 10);
 
-            randNumber = parseInt("" + numberSelect + randSecondNumber);
+            randNumber = parseInt(`${numberSelect}${randSecondNumber}`);
         }
 
         if(Math.random() > 0.5) {
@@ -58,19 +58,19 @@ function generateHardNumbers(numbersWanted){
     return allNumbers;
 }
 
-function generateNumbers(Score = 0) {
+function generateNumbers(score = 0) {
     let numberArray = [];
     let numbersWanted = Math.floor(Math.random() * 3) + 3;
 
-    if (Score < 2) {
+    if (score < 2) {
         numberArray = generateEasyNumbers(numbersWanted);
-    } else if ((Score === 3) || (Score === 4)) {
+    } else if ((score === 3) || (score === 4)) {
         numberArray = generateNegativeNumbers(numbersWanted);
-    } else if ((Score === 5) || (Score === 6)) {
+    } else if ((score === 5) || (score === 6)) {
         numberArray = generateNegativeNumbers(numbersWanted - 2).concat(generateHardNumbers(2));
-    } else if ((Score === 7) || (Score === 8)) {
+    } else if ((score === 7) || (score === 8)) {
         numberArray = generateNegativeNumbers(numbersWanted - 3).concat(generateHardNumbers(3));
-    } else if ((Score === 9) || (Score === 10)) {
+    } else if ((score === 9) || (score === 10)) {
         numberArray = generateHardNumbers(numbersWanted - 2).concat(generateHardNumbers(2));
     } else {
         numberArray = generateHardNumbers(numbersWanted);
