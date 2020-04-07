@@ -25,6 +25,20 @@ main {
     align-items: center;
 }
 
+#start {
+    padding: 40px 80px;
+    font-size: 2.5rem;
+}
+
+.instructions {
+    border: 1px solid #000000;
+    margin-top: 30px;
+}
+
+.instructions ol {
+    text-align: left;
+}
+
 #game {
     display: none;
 }
@@ -52,18 +66,8 @@ main {
     justify-content: space-between;
 }
 
-#start {
-    padding: 40px 80px;
-    font-size: 2.5rem;
-}
-
-.instructions {
-    border: 1px solid #000000;
-    margin-top: 30px;
-}
-
-.instructions ol {
-    text-align: left;
+.clicked {
+    color: #AAAAAA;
 }
 
 #play_area {
@@ -76,4 +80,12 @@ main {
 
 .numberBox {
     font-size: 6rem;
+}
+
+.numberBox.clicked:hover {
+    cursor: not-allowed;
+}
+
+.numberBox:hover {
+    cursor: pointer;
 }
