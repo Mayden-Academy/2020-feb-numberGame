@@ -64,7 +64,7 @@ function generateNegativeNumbers(numbersWanted) {
     return allNumbers;
 }
 
-function generateHardNumbers(numbersWanted){
+function generateHardNumbers(numbersWanted) {
     let randNumber = '';
     let allNumbers = [];
     let numberSelect = Math.floor(Math.random() * 10);
