@@ -178,7 +178,6 @@ document.querySelector('#start').addEventListener('click', () => {
     const startingScore = 0;
     const randomNumbers = generateNumbers(startingScore);
 
-
     document.querySelector('#splash').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
     document.querySelector('#player_score').textContent = `Score: ${startingScore}`;
