@@ -32,11 +32,10 @@ function arrayCheckEqualsDesc(array) {
     return true;
 }
 
-function generateNumbers() {
-    let numbersOnScreen = Math.floor(Math.random() * 3) + 3;
+function generateEasyNumbers(numbersWanted) {
     let allNumbers = [];
 
-    for (let i = 0; i < numbersOnScreen; i++) {
+    for (let i = 0; i < numbersWanted; i++) {
         let randNumber = Math.floor(Math.random() * 101);
 
         if (allNumbers.includes(randNumber)) {
@@ -45,11 +44,79 @@ function generateNumbers() {
             allNumbers.push(randNumber);
         }
     }
-    while ((arrayCheckEqualsAsc(allNumbers)) || (arrayCheckEqualsDesc(allNumbers))) {
-        allNumbers = shuffleArray(allNumbers);
+
+    return allNumbers;
+}
+
+function generateNegativeNumbers(numbersWanted) {
+    let allNumbers = [];
+
+    for (let i = 0; i < numbersWanted; i++) {
+        let randNumber = Math.floor(Math.random() * 201) - 100;
+
+        if (allNumbers.includes(randNumber)) {
+            i--;
+        } else {
+            allNumbers.push(randNumber);
+        }
     }
 
     return allNumbers;
+}
+
+function generateHardNumbers(numbersWanted) {
+    let randNumber = '';
+    let allNumbers = [];
+    let numberSelect = Math.floor(Math.random() * 10);
+
+    for (let i = 0; i < numbersWanted; i++) {
+        let rand1in11chance = Math.floor(Math.random() * 11);
+
+        if (rand1in11chance === 10) {
+            randNumber = numberSelect;
+        } else {
+            let randSecondNumber = Math.floor(Math.random() * 10);
+
+            randNumber = parseInt(`${numberSelect}${randSecondNumber}`);
+        }
+
+        if (Math.random() < 0.5) {
+           randNumber = (0 - randNumber);
+        }
+
+        if (allNumbers.includes(randNumber)) {
+            i--;
+        } else {
+            allNumbers.push(randNumber);
+        }
+    }
+
+    return allNumbers;
+}
+
+function generateNumbers(score = 0) {
+    let numberArray = [];
+    let numbersWanted = Math.floor(Math.random() * 3) + 3;
+
+    if (score < 2) {
+        numberArray = generateEasyNumbers(numbersWanted);
+    } else if ((score === 3) || (score === 4)) {
+        numberArray = generateNegativeNumbers(numbersWanted);
+    } else if ((score === 5) || (score === 6)) {
+        numberArray = generateNegativeNumbers(numbersWanted - 2).concat(generateHardNumbers(2));
+    } else if ((score === 7) || (score === 8)) {
+        numberArray = generateNegativeNumbers(numbersWanted - 3).concat(generateHardNumbers(3));
+    } else if ((score === 9) || (score === 10)) {
+        numberArray = generateHardNumbers(numbersWanted - 2).concat(generateHardNumbers(2));
+    } else {
+        numberArray = generateHardNumbers(numbersWanted);
+    }
+
+    while ((arrayCheckEqualsAsc(numberArray)) || (arrayCheckEqualsDesc(numberArray))) {
+        numberArray = shuffleArray(numberArray);
+    }
+    
+    return numberArray;
 }
 
 function displayNumbers(randomNumbers, currentScore) {
@@ -81,9 +148,9 @@ function displayNumbers(randomNumbers, currentScore) {
                     classList.add('clicked');
 
                     if (allNumbersClicked(selectedOrder, sortedNumbers)) {
-                        const randomNumbers = generateNumbers();
-
                         ++currentScore;
+
+                        const randomNumbers = generateNumbers(currentScore);
 
                         document.querySelector('#player_score').textContent = `Score: ${currentScore}`;
 
@@ -123,7 +190,8 @@ function makeScreenFlex(cssTag) {
 
 function playGame() {
     const startingScore = 0;
-    const randomNumbers = generateNumbers();
+    const randomNumbers = generateNumbers(startingScore);
+
     timeLeft = totalTime; // restarts the timer to the maximum timer value when starting a new game
 
     hideScreen('#splash_screen');
@@ -149,5 +217,6 @@ function timePenalty() {
 document.querySelectorAll('.play_button').forEach((button) => {
     button.addEventListener('click', playGame);
 });
+
 
 
