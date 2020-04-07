@@ -48,8 +48,8 @@ function displayNumbers(randomNumbers, currentScore) {
                         displayNumbers(randomNumbers, currentScore);
                     }
                 } else {
+                    timePenalty();
                     document.querySelectorAll('.clicked').forEach((chosenNumber) => {
-                        timePenalty();
                         chosenNumber.classList.remove('clicked');
                         selectedOrder = [];
                     });
