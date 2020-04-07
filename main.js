@@ -11,7 +11,7 @@ function generateNumbers() {
     return allNumbers;
 }
 
-function displayNumbers(randomNumbers) {
+function displayNumbers(randomNumbers, currentScore) {
     const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
     const numbersOnScreen = randomNumbers.length;
     let selectedOrder = [];
@@ -38,7 +38,14 @@ function displayNumbers(randomNumbers) {
                     classList.add('clicked');
 
                     if (allNumbersClicked(selectedOrder, sortedNumbers)) {
+                        const randomNumbers = generateNumbers();
+
+                        ++currentScore;
+
+                        document.querySelector('#player_score').textContent = `Score: ${currentScore}`;
                         document.querySelector('#play_area').textContent = '';
+
+                        displayNumbers(randomNumbers, currentScore);
                     }
                 } else {
                     document.querySelectorAll('.clicked').forEach((chosenNumber) => {
@@ -64,13 +71,15 @@ function allNumbersClicked(selectedOrder, sortedNumbers) {
 }
 
 document.querySelector('#start').addEventListener('click', () => {
+    const startingScore = 0;
     const randomNumbers = generateNumbers();
 
     document.querySelector('#splash').style.display = 'none';
     document.querySelector('#game').style.display = 'block';
+    document.querySelector('#player_score').textContent = `Score: ${startingScore}`;
 
     displayTimeLeft(totalTime);
-    displayNumbers(randomNumbers);
+    displayNumbers(randomNumbers, startingScore);
     timer();
 });
 
