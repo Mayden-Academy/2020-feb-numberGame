@@ -28,6 +28,20 @@ main {
     align-items: center;
 }
 
+#start {
+    padding: 40px 80px;
+    font-size: 2.5rem;
+}
+
+.instructions {
+    border: 1px solid #000000;
+    margin-top: 30px;
+}
+
+.instructions ol {
+    text-align: left;
+}
+
 #game {
     display: none;
 }
@@ -69,6 +83,10 @@ main {
     text-align: left;
 }
 
+.clicked {
+    color: #AAAAAA;
+}
+
 #play_area {
     flex-grow: 1;
     display: flex;
@@ -94,9 +112,20 @@ main {
 #game_over {
     font-size: 4rem;
     margin-top: 30px;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    display: none;
+    justify-content: center;
+}
+
+#score_box, .play_button, h2 {
+    margin: 40px;
+}
+
+.numberBox.clicked:hover {
+    cursor: not-allowed;
+}
+
+.numberBox:hover {
+    cursor: pointer;
 }

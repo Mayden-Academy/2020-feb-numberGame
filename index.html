@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="css/style.css">
+
     <title>Numbers Game</title>
+    <script src="timer.js" async></script>
     <script src="main.js" defer></script>
 </head>
 <body>
@@ -18,8 +21,8 @@
         <section id="game" class="screen">
             <div id="game_screen">
                 <div id="top_bar">
-                    <div id="game_timer">Timer</div>
-                    <div id="player_score">Score</div>
+                    <div id="game_timer"></div>
+                    <div id="player_score"></div>
                 </div>
                 <div id="play_area"></div>
                 <div id="penaltyScreen">Time Penalty! Xs</div>
@@ -27,8 +30,10 @@
         </section>
         <section id="game_over" class="screen">
                 <h2>Time's Up!!!</h2>
-                <div id="score_box">Score: X</div>
-                <button class="play_button">Try Again?</button>
+                <div id="score_box"></div>
+                <button id='game_repeat' class="play_button" type="button">
+                    Try Again?
+                </button>
         </section>
         <section class="instructions">
             <h2>Instructions</h2>
