@@ -29,7 +29,6 @@ function arrayCheckEquals(array1, array2) {
 function generateNumbers() {
     let numbersOnScreen = Math.floor(Math.random() * 3) + 3;
     let allNumbers = [];
-    numbersOnScreen = 3;
 
     for (let i = 0; i < numbersOnScreen; i++) {
         let randNumber = Math.floor(Math.random() * 101);
@@ -48,9 +47,6 @@ function generateNumbers() {
     }
 
     return allNumbers;
-}
-for (let i = 0; i < 15; i++) {
-    generateNumbers()
 }
 
 function displayNumbers(randomNumbers, currentScore) {
