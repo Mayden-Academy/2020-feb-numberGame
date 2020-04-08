@@ -43,7 +43,6 @@ function generateEasyNumbers(numbersWanted, useNegative = false) {
             randNumber = Math.floor(Math.random() * 101);
         }
 
-
         if (!allNumbers.includes(randNumber)) {
             allNumbers.push(randNumber);
         }
@@ -143,27 +142,16 @@ function generateNumbers(score = 0) {
     while ((arrayCheckEqualsAsc(numberArray)) || (arrayCheckEqualsDesc(numberArray))) {
         numberArray = shuffleArray(numberArray);
     }
-    
+
     return numberArray;
 }
 
 function displayNumbers(randomNumbers, currentScore) {
     const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
-    const numbersOnScreen = randomNumbers.length;
+    const numbersToGenerate = randomNumbers.length;
     let selectedOrder = [];
 
-    document.querySelector('#play_area').textContent = '';
-
-    // using a for loop instead of forEach as the array.pop changes the length over each iteration
-    for (let i = 0; i < numbersOnScreen; i++) {
-        let randNumber = randomNumbers.pop();
-        let number = document.createElement('div');
-
-        number.textContent = randNumber;
-        number.setAttribute('class', 'numberBox');
-
-        document.querySelector('#play_area').appendChild(number);
-    }
+    generatePositions(numbersToGenerate, randomNumbers);
 
     document.querySelectorAll('.numberBox').forEach((numberBox) => {
         numberBox.addEventListener('click', () => {
@@ -186,6 +174,7 @@ function displayNumbers(randomNumbers, currentScore) {
                     }
                 } else {
                     timePenalty();
+
                     document.querySelectorAll('.clicked').forEach((chosenNumber) => {
                         chosenNumber.classList.remove('clicked');
                         selectedOrder = [];
@@ -194,6 +183,70 @@ function displayNumbers(randomNumbers, currentScore) {
             }
         });
     });
+}
+
+function generatePositions(numbersToGenerate, randomNumbers) {
+    let positionValues = [];
+
+    document.querySelector('#play_area').innerHTML = '<div class="placeholder"> </div>'.repeat(15);
+
+    // using a for loop instead of forEach as the array.pop changes the length over each iteration
+    for (let i = 0; i < numbersToGenerate; i++) {
+        const possibleLocations = document.querySelectorAll('.placeholder:not(.numberBox)');
+        const position = Math.floor(Math.random() * possibleLocations.length);
+
+        possibleLocations[position].textContent = randomNumbers.pop();
+        possibleLocations[position].classList.add('numberBox');
+    }
+
+    document.querySelectorAll('.numberBox').forEach((numberBox) => {
+        positionValues.push(numberBox.dataset.position);
+    });
+
+    checkPositions(numbersToGenerate);
+}
+
+function checkPositions(numbersGenerated) {
+    let cellsIterator = 0;
+    let found = 0;
+
+    const cells = document.querySelectorAll('.placeholder');
+
+    // Using for loop as we need to break out.
+    for (let i = 0; i < cells.length; i++) {
+        const cell = cells[i];
+
+        cellsIterator++;
+
+        if (cell.classList.contains('.numberBox')) {
+            found++;
+        }
+
+        if (cellsIterator === 4) {
+            cellsIterator = 0;
+
+            if (found === numbersGenerated) {
+                moveValueToDifferentCell(cells, cell);
+
+                break;
+            }
+        }
+    }
+}
+
+function moveValueToDifferentCell(cells, cell) {
+    const valueOfCell = cell.textContent;
+
+    cell.classList.remove('numberBox');
+    cell.textContent = '';
+
+    if (cells[4].classList.contains('numberBox')) {
+        cells[0].classList.add('numberBox');
+        cells[0].textContent = valueOfCell;
+    } else {
+        cells[4].classList.add('numberBox');
+        cells[4].textContent = valueOfCell;
+    }
 }
 
 function numberHasNotBeenClicked(elementClass) {
@@ -225,6 +278,7 @@ function playGame() {
     hideScreen('#splash_screen');
     hideScreen('#game_over');
     makeScreenFlex('#game');
+
     document.querySelector('#player_score').textContent = `Score: ${startingScore}`;
 
     displayTimeLeft(timeLeft);
