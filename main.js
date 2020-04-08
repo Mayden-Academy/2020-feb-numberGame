@@ -109,7 +109,6 @@ function generatePositions(numbersToGenerate, randomNumbers) {
         const position = Math.floor(Math.random() * possibleLocations.length);
 
         possibleLocations[position].textContent = randomNumbers.pop();
-        possibleLocations[position].dataset.position = String(position);
         possibleLocations[position].classList.add('numberBox');
     }
 
@@ -117,18 +116,34 @@ function generatePositions(numbersToGenerate, randomNumbers) {
         positionValues.push(numberBox.dataset.position);
     });
 
+    checkPositions(numbersToGenerate);
+}
 
-    table.forEach((row) => {
-        let occurrences = 0;
+function checkPositions(numbersGenerated) {
+    let cellsIterator = 0;
+    let found = 0;
 
-        positionValues.forEach((value) => {
-            if (row.includes(Number(value))) {
-                occurrences++;
+    const cells = document.querySelectorAll('.placeholder');
+
+    cells.forEach((cell) => {
+        cellsIterator++;
+
+        if (cell.classList.contains('.numberBox')) {
+            found++;
+        }
+
+        if (cellsIterator === 4) {
+            cellsIterator = 0;
+
+            if (found === numbersGenerated) {
+                const valueOfCell = cell.textContent;
+
+                cell.classList.remove('numberBox');
+                cell.textContent = '';
+
+                cells[4].classList.add('numberBox');
+                cell.textContent = valueOfCell;
             }
-        });
-
-        if (occurrences > numbersToGenerate - 1) {
-            generatePositions(numbersToGenerate, randomNumbers);
         }
     });
 }
