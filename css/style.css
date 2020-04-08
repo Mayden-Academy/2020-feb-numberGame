@@ -113,7 +113,6 @@ main {
 
 .numberBox {
     font-size: 6rem;
-    border: none;
     background-size: cover;
     background-image: url(../lilypad-green.svg);
     background-repeat: no-repeat;
