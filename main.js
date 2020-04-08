@@ -38,14 +38,7 @@ function displayNumbers(randomNumbers, currentScore) {
 
     document.querySelector('#play_area').innerHTML = grid;
 
-    // using a for loop instead of forEach as the array.pop changes the length over each iteration
-    for (let i = 0; i < numbersOnScreen; i++) {
-        const cards = document.querySelectorAll('.placeholder:not(.numberBox)');
-        const position = Math.floor(Math.random() * Math.floor(cards.length));
-
-        cards[position].textContent = randomNumbers.pop();
-        cards[position].classList.add('numberBox');
-    }
+    generatePositions(numbersOnScreen, randomNumbers);
 
     document.querySelectorAll('.numberBox').forEach((numberBox) => {
         numberBox.addEventListener('click', () => {
@@ -76,6 +69,45 @@ function displayNumbers(randomNumbers, currentScore) {
                 }
             }
         });
+    });
+}
+
+function generatePositions(numbersOnScreen, randomNumbers) {
+    const table = [
+        [0, 1, 2, 3],
+        [4, 5, 6, 7],
+        [8, 9, 10, 11],
+        [12, 13, 14, 15]
+    ];
+    let positionValues = [];
+
+    // using a for loop instead of forEach as the array.pop changes the length over each iteration
+    for (let i = 0; i < numbersOnScreen; i++) {
+        const cards = document.querySelectorAll('.placeholder:not(.numberBox)');
+        const position = Math.floor(Math.random() * Math.floor(cards.length));
+
+        cards[position].textContent = randomNumbers.pop();
+        cards[position].dataset.position = String(position);
+        cards[position].classList.add('numberBox');
+    }
+
+    document.querySelectorAll('.numberBox').forEach((numberBox) => {
+        positionValues.push(numberBox.dataset.position);
+    });
+
+
+    table.forEach((row) => {
+        let occurrences = 0;
+
+        positionValues.forEach((value) => {
+            if (row.includes(Number(value))) {
+                occurrences++;
+            }
+        });
+
+        if (occurrences > numbersOnScreen - 1) {
+            generatePositions(numbersOnScreen, randomNumbers);
+        }
     });
 }
 
