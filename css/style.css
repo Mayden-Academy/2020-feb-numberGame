@@ -101,6 +101,23 @@ main {
     color: #000000;
 }
 
+.numberBox.clicked:hover {
+    cursor: not-allowed;
+}
+
+.numberBox:hover {
+    cursor: pointer;
+}
+
+.card {
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6rem;
+}
+
 .clicked {
     color: #AAAAAA;
 }
@@ -125,12 +142,4 @@ main {
 
 #score_box, .play_button, h2 {
     margin: 40px;
-}
-
-.numberBox.clicked:hover {
-    cursor: not-allowed;
-}
-
-.numberBox:hover {
-    cursor: pointer;
 }
