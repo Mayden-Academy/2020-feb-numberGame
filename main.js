@@ -35,7 +35,6 @@ function arrayCheckEqualsDesc(array) {
 function generateEasyNumbers(numbersWanted) {
     let allNumbers = [];
 
-    // for (i = 0; i < numbersWanted; i++) {
     while (allNumbers.length < numbersWanted) {
 
         let randNumber = Math.floor(Math.random() * 101);
@@ -43,44 +42,40 @@ function generateEasyNumbers(numbersWanted) {
         if (!allNumbers.includes(randNumber)) {
             allNumbers.push(randNumber);
         }
-        console.log(allNumbers, numbersWanted);
     }
 
     return allNumbers;
 }
 
 function generateNegativeNumbers(numbersWanted) {
-
     let allNumbers = [];
 
-    // for (i = 0; i < numbersWanted; i++) {
     while (allNumbers.length < numbersWanted) {
         let randNumber = Math.floor(Math.random() * 201) - 100;
 
         if (!allNumbers.includes(randNumber)) {
             allNumbers.push(randNumber);
         }
-        console.log(allNumbers, numbersWanted);
     }
 
     return allNumbers;
 }
 
 function generateHardNumbers(numbersWanted, existingNumbers = []) {
-
+    const allocatedNumber = getBetween0And9();
+    const totalNumbers = numbersWanted + existingNumbers.length;
     let randNumber = '';
-    let allNumbers = existingNumbers;
-    let allocatedNumber = getBetween0And9();
+    let allNumbers = [];
 
-    // for (i = 0; i < numbersWanted; i++) {
-    while (allNumbers.length < (numbersWanted + existingNumbers)) {
+    allNumbers = allNumbers.concat(existingNumbers);
+
+    while (allNumbers.length < totalNumbers) {
         randNumber = generateSimilarNumber(allocatedNumber);
         randNumber = randomiseSign(randNumber);
 
         if (!allNumbers.includes(randNumber)) {
             allNumbers.push(randNumber);
         }
-        console.log(allNumbers, numbersWanted);
     }
 
     return allNumbers;
@@ -103,7 +98,8 @@ function randomiseSign(randNumber) {
 }
 
 function generateSimilarNumber(allocatedNumber) {
-    let rand1in11chance = getBetween0And10();
+    const rand1in11chance = getBetween0And10();
+    let randNumber;
 
     if (rand1in11chance === 10) {
         randNumber = allocatedNumber;
