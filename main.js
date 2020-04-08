@@ -212,7 +212,10 @@ function checkPositions(numbersGenerated) {
 
     const cells = document.querySelectorAll('.placeholder');
 
-    cells.forEach((cell) => {
+    // Using for loop as we need to break out.
+    for (let i = 0; i < cells.length; i++) {
+        const cell = cells[i];
+
         cellsIterator++;
 
         if (cell.classList.contains('.numberBox')) {
@@ -235,9 +238,11 @@ function checkPositions(numbersGenerated) {
                     cells[4].classList.add('numberBox');
                     cells[4].textContent = valueOfCell;
                 }
+
+                break;
             }
         }
-    });
+    }
 }
 
 function numberHasNotBeenClicked(elementClass) {
