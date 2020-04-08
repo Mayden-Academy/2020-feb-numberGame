@@ -97,6 +97,7 @@ function generateHardNumbers(numbersWanted, existingNumbers = '') {
 function generateNumbers(score = 0) {
     let numberArray = [];
     let numbersWanted = Math.floor(Math.random() * 3) + 3;
+    let firstNumbersGenerated = [];
 
     switch (score) {
         case 0:
@@ -110,17 +111,17 @@ function generateNumbers(score = 0) {
             break;
         case 5:
         case 6:
-            let firstNumbersGenerated = generateNegativeNumbers(numbersWanted - 2);
+            firstNumbersGenerated = generateNegativeNumbers(numbersWanted - 2);
             numberArray = (generateHardNumbers(2, firstNumbersGenerated));
             break;
         case 7:
         case 8:
-            let firstNumbersGenerated = generateNegativeNumbers(numbersWanted - 3);
+            firstNumbersGenerated = generateNegativeNumbers(numbersWanted - 3);
             numberArray = (generateHardNumbers(3, firstNumbersGenerated));
             break;
         case 9:
         case 10:
-            let firstNumbersGenerated = generateHardNumbers(2);
+            firstNumbersGenerated = generateHardNumbers(2);
             numberArray = (generateHardNumbers((numbersWanted - 2), firstNumbersGenerated));
             break;
         default:
