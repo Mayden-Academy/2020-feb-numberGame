@@ -109,15 +109,6 @@ main {
     cursor: pointer;
 }
 
-.card {
-    width: auto;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 6rem;
-}
-
 .clicked {
     color: #AAAAAA;
 }

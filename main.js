@@ -78,7 +78,7 @@ function displayNumbers(randomNumbers, currentScore) {
     const numbersOnScreen = randomNumbers.length;
     let selectedOrder = [];
 
-    generatePositions(numbersOnScreen, randomNumbers, currentScore);
+    generatePositions(numbersOnScreen, randomNumbers);
 
     document.querySelectorAll('.numberBox').forEach((numberBox) => {
         numberBox.addEventListener('click', () => {
@@ -112,59 +112,45 @@ function displayNumbers(randomNumbers, currentScore) {
     });
 }
 
-function generatePositions(numbersOnScreen, randomNumbers, currentScore) {
-    if (currentScore >= 4) {
-        const table = [
-            [0, 1, 2, 3],
-            [4, 5, 6, 7],
-            [8, 9, 10, 11],
-            [12, 13, 14, 15]
-        ];
-        let positionValues = [];
+function generatePositions(numbersOnScreen, randomNumbers) {
+    const table = [
+        [0, 1, 2, 3],
+        [4, 5, 6, 7],
+        [8, 9, 10, 11],
+        [12, 13, 14, 15]
+    ];
+    let positionValues = [];
 
-        document.querySelector('#play_area').innerHTML = grid;
+    document.querySelector('#play_area').innerHTML = grid;
 
-        // using a for loop instead of forEach as the array.pop changes the length over each iteration
-        for (let i = 0; i < numbersOnScreen; i++) {
-            const possibleLocations = document.querySelectorAll('.placeholder:not(.numberBox)');
-            const position = Math.floor(Math.random() * Math.floor(possibleLocations.length));
+    // using a for loop instead of forEach as the array.pop changes the length over each iteration
+    for (let i = 0; i < numbersOnScreen; i++) {
+        const possibleLocations = document.querySelectorAll('.placeholder:not(.numberBox)');
+        const position = Math.floor(Math.random() * Math.floor(possibleLocations.length));
 
-            possibleLocations[position].textContent = randomNumbers.pop();
-            possibleLocations[position].dataset.position = String(position);
-            possibleLocations[position].classList.add('numberBox');
-        }
+        possibleLocations[position].textContent = randomNumbers.pop();
+        possibleLocations[position].dataset.position = String(position);
+        possibleLocations[position].classList.add('numberBox');
+    }
 
-        document.querySelectorAll('.numberBox').forEach((numberBox) => {
-            positionValues.push(numberBox.dataset.position);
-        });
+    document.querySelectorAll('.numberBox').forEach((numberBox) => {
+        positionValues.push(numberBox.dataset.position);
+    });
 
 
-        table.forEach((row) => {
-            let occurrences = 0;
+    table.forEach((row) => {
+        let occurrences = 0;
 
-            positionValues.forEach((value) => {
-                if (row.includes(Number(value))) {
-                    occurrences++;
-                }
-            });
-
-            if (occurrences > numbersOnScreen - 1) {
-                generatePositions(numbersOnScreen, randomNumbers, currentScore);
+        positionValues.forEach((value) => {
+            if (row.includes(Number(value))) {
+                occurrences++;
             }
         });
-    } else {
-        document.querySelector('#play_area').textContent = '';
 
-        for (let i = 0; i < numbersOnScreen; i++) {
-            let randNumber = randomNumbers.pop();
-            let number = document.createElement('div');
-
-            number.textContent = randNumber;
-            number.classList.add('numberBox');
-            number.classList.add('card');
-            document.querySelector('#play_area').appendChild(number);
+        if (occurrences > numbersOnScreen - 1) {
+            generatePositions(numbersOnScreen, randomNumbers, currentScore);
         }
-    }
+    });
 }
 
 function numberHasNotBeenClicked(elementClass) {
