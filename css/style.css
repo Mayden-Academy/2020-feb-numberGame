@@ -79,6 +79,14 @@ main {
     margin-top: 30px;
 }
 
+.instructions ol {
+    text-align: left;
+}
+
+.clicked {
+    color: #AAAAAA;
+}
+
 #play_area {
     display: flex;
     flex-wrap: wrap;
