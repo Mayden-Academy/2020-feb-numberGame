@@ -37,29 +37,30 @@ function generateEasyNumbers(numbersWanted) {
 
     // for (i = 0; i < numbersWanted; i++) {
     while (allNumbers.length < numbersWanted) {
+
         let randNumber = Math.floor(Math.random() * 101);
 
         if (!allNumbers.includes(randNumber)) {
             allNumbers.push(randNumber);
         }
+        console.log(allNumbers, numbersWanted);
     }
 
     return allNumbers;
 }
 
 function generateNegativeNumbers(numbersWanted) {
-    console.log('testfunction');
 
     let allNumbers = [];
 
     // for (i = 0; i < numbersWanted; i++) {
     while (allNumbers.length < numbersWanted) {
-        console.log('testwhile');
         let randNumber = Math.floor(Math.random() * 201) - 100;
 
         if (!allNumbers.includes(randNumber)) {
             allNumbers.push(randNumber);
         }
+        console.log(allNumbers, numbersWanted);
     }
 
     return allNumbers;
@@ -72,13 +73,14 @@ function generateHardNumbers(numbersWanted, existingNumbers = []) {
     let allocatedNumber = getBetween0And9();
 
     // for (i = 0; i < numbersWanted; i++) {
-    while (allNumbers.length < numbersWanted) {
+    while (allNumbers.length < (numbersWanted + existingNumbers)) {
         randNumber = generateSimilarNumber(allocatedNumber);
         randNumber = randomiseSign(randNumber);
 
         if (!allNumbers.includes(randNumber)) {
             allNumbers.push(randNumber);
         }
+        console.log(allNumbers, numbersWanted);
     }
 
     return allNumbers;
