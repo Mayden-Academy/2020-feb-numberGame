@@ -32,26 +32,17 @@ function arrayCheckEqualsDesc(array) {
     return true;
 }
 
-function generateEasyNumbers(numbersWanted) {
+function generateEasyNumbers(numbersWanted, useNegative = false) {
     let allNumbers = [];
+    let randNumber;
 
     while (allNumbers.length < numbersWanted) {
-
-        let randNumber = Math.floor(Math.random() * 101);
-
-        if (!allNumbers.includes(randNumber)) {
-            allNumbers.push(randNumber);
+        if (useNegative) {
+            randNumber = Math.floor(Math.random() * 201) - 100;
+        } else {
+            randNumber = Math.floor(Math.random() * 101);
         }
-    }
 
-    return allNumbers;
-}
-
-function generateNegativeNumbers(numbersWanted) {
-    let allNumbers = [];
-
-    while (allNumbers.length < numbersWanted) {
-        let randNumber = Math.floor(Math.random() * 201) - 100;
 
         if (!allNumbers.includes(randNumber)) {
             allNumbers.push(randNumber);
@@ -64,10 +55,8 @@ function generateNegativeNumbers(numbersWanted) {
 function generateHardNumbers(numbersWanted, existingNumbers = []) {
     const allocatedNumber = getBetween0And9();
     const totalNumbers = numbersWanted + existingNumbers.length;
-    let randNumber = '';
-    let allNumbers = [];
-
-    allNumbers = allNumbers.concat(existingNumbers);
+    let randNumber;
+    let allNumbers = [...existingNumbers];
 
     while (allNumbers.length < totalNumbers) {
         randNumber = generateSimilarNumber(allocatedNumber);
@@ -105,7 +94,6 @@ function generateSimilarNumber(allocatedNumber) {
         randNumber = allocatedNumber;
     } else {
         let randSecondNumber =  getBetween0And9();
-
         randNumber = parseInt(`${allocatedNumber}${randSecondNumber}`);
     }
 
@@ -116,6 +104,7 @@ function generateNumbers(score = 0) {
     let numberArray = [];
     let numbersWanted = Math.floor(Math.random() * 3) + 3;
     let firstNumbersGenerated = [];
+    let useNegative = true;
 
     switch (score) {
         case 0:
@@ -125,24 +114,28 @@ function generateNumbers(score = 0) {
             break;
         case 3:
         case 4:
-            numberArray = generateNegativeNumbers(numbersWanted);
+            numberArray = generateEasyNumbers(numbersWanted, useNegative);
             break;
         case 5:
         case 6:
-            firstNumbersGenerated = generateNegativeNumbers(numbersWanted - 2);
+            // gets 1-3 easy numbers and adds 2 similar numbers to array
+            firstNumbersGenerated = generateEasyNumbers(numbersWanted - 2, useNegative);
             numberArray = (generateHardNumbers(2, firstNumbersGenerated));
             break;
         case 7:
         case 8:
-            firstNumbersGenerated = generateNegativeNumbers(numbersWanted - 3);
+            // gets 0-2 easy numbers and adds 3 similar numbers to array
+            firstNumbersGenerated = generateEasyNumbers(numbersWanted - 3, useNegative);
             numberArray = (generateHardNumbers(3, firstNumbersGenerated));
             break;
         case 9:
         case 10:
+            // gets 2 numbers (similar to each other) and adds 3 more numbers (similar to each other)to array
             firstNumbersGenerated = generateHardNumbers(2);
             numberArray = (generateHardNumbers((numbersWanted - 2), firstNumbersGenerated));
             break;
         default:
+            // generate 3-5 similar numbers
             numberArray = generateHardNumbers(numbersWanted);
             break;
     }
