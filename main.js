@@ -84,12 +84,12 @@ function generatePositions(numbersOnScreen, randomNumbers, currentScore) {
 
         // using a for loop instead of forEach as the array.pop changes the length over each iteration
         for (let i = 0; i < numbersOnScreen; i++) {
-            const cards = document.querySelectorAll('.placeholder:not(.numberBox)');
-            const position = Math.floor(Math.random() * Math.floor(cards.length));
+            const possibleLocations = document.querySelectorAll('.placeholder:not(.numberBox)');
+            const position = Math.floor(Math.random() * Math.floor(possibleLocations.length));
 
-            cards[position].textContent = randomNumbers.pop();
-            cards[position].dataset.position = String(position);
-            cards[position].classList.add('numberBox');
+            possibleLocations[position].textContent = randomNumbers.pop();
+            possibleLocations[position].dataset.position = String(position);
+            possibleLocations[position].classList.add('numberBox');
         }
 
         document.querySelectorAll('.numberBox').forEach((numberBox) => {
