@@ -228,8 +228,13 @@ function checkPositions(numbersGenerated) {
                 cell.classList.remove('numberBox');
                 cell.textContent = '';
 
-                cells[4].classList.add('numberBox');
-                cell.textContent = valueOfCell;
+                if (cells[4].classList.contains('numberBox')) {
+                    cells[0].classList.add('numberBox');
+                    cells[0].textContent = valueOfCell;
+                } else {
+                    cells[4].classList.add('numberBox');
+                    cells[4].textContent = valueOfCell;
+                }
             }
         }
     });
