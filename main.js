@@ -1,23 +1,3 @@
-// This is used to pre-fill the grid, the dot is used to act as content to space it out.
-const grid = `
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-    <div class="placeholder">.</div>
-`;
-
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
@@ -75,10 +55,10 @@ function generateNumbers() {
 
 function displayNumbers(randomNumbers, currentScore) {
     const sortedNumbers = randomNumbers.slice(0).sort((a, b) => a - b);
-    const numbersOnScreen = randomNumbers.length;
+    const numbersToGenerate = randomNumbers.length;
     let selectedOrder = [];
 
-    generatePositions(numbersOnScreen, randomNumbers);
+    generatePositions(numbersToGenerate, randomNumbers);
 
     document.querySelectorAll('.numberBox').forEach((numberBox) => {
         numberBox.addEventListener('click', () => {
@@ -112,7 +92,7 @@ function displayNumbers(randomNumbers, currentScore) {
     });
 }
 
-function generatePositions(numbersOnScreen, randomNumbers) {
+function generatePositions(numbersToGenerate, randomNumbers) {
     const table = [
         [0, 1, 2, 3],
         [4, 5, 6, 7],
@@ -121,12 +101,12 @@ function generatePositions(numbersOnScreen, randomNumbers) {
     ];
     let positionValues = [];
 
-    document.querySelector('#play_area').innerHTML = grid;
+    document.querySelector('#play_area').innerHTML = '<div class="placeholder"> </div>'.repeat(15);
 
     // using a for loop instead of forEach as the array.pop changes the length over each iteration
-    for (let i = 0; i < numbersOnScreen; i++) {
+    for (let i = 0; i < numbersToGenerate; i++) {
         const possibleLocations = document.querySelectorAll('.placeholder:not(.numberBox)');
-        const position = Math.floor(Math.random() * Math.floor(possibleLocations.length));
+        const position = Math.floor(Math.random() * possibleLocations.length);
 
         possibleLocations[position].textContent = randomNumbers.pop();
         possibleLocations[position].dataset.position = String(position);
@@ -147,8 +127,8 @@ function generatePositions(numbersOnScreen, randomNumbers) {
             }
         });
 
-        if (occurrences > numbersOnScreen - 1) {
-            generatePositions(numbersOnScreen, randomNumbers, currentScore);
+        if (occurrences > numbersToGenerate - 1) {
+            generatePositions(numbersToGenerate, randomNumbers);
         }
     });
 }
