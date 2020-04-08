@@ -75,6 +75,7 @@ main {
     background-color: transparent;
     height: 200px;
     width: 200px;
+    filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.2));
 }
 
 .instructions {
@@ -120,6 +121,7 @@ main {
     justify-content: center;
     align-items: center;
     color: #000000;
+    filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.2));
 }
 
 .numberBox.clicked:hover {
