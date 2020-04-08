@@ -35,11 +35,11 @@ function arrayCheckEqualsDesc(array) {
 function generateEasyNumbers(numbersWanted) {
     let allNumbers = [];
 
-    for (let i = 0; i < numbersWanted; i++) {
+    while (allNumbers.length < numbersWanted) {
         let randNumber = Math.floor(Math.random() * 101);
 
         if (allNumbers.includes(randNumber)) {
-            i--; //this makes the for loop run an additional time.
+            continue;
         } else {
             allNumbers.push(randNumber);
         }
@@ -51,11 +51,11 @@ function generateEasyNumbers(numbersWanted) {
 function generateNegativeNumbers(numbersWanted) {
     let allNumbers = [];
 
-    for (let i = 0; i < numbersWanted; i++) {
+    while (allNumbers.length < numbersWanted) {
         let randNumber = Math.floor(Math.random() * 201) - 100;
 
         if (allNumbers.includes(randNumber)) {
-            i--;
+            continue;
         } else {
             allNumbers.push(randNumber);
         }
@@ -64,34 +64,54 @@ function generateNegativeNumbers(numbersWanted) {
     return allNumbers;
 }
 
-function generateHardNumbers(numbersWanted, existingNumbers = '') {
+function generateHardNumbers(numbersWanted, existingNumbers = []) {
+    console.log('blah');
     let randNumber = '';
     let allNumbers = existingNumbers;
-    let numberSelect = Math.floor(Math.random() * 10);
+    let allocatedNumber = getBetween0And9();
 
-    for (let i = 0; i < numbersWanted; i++) {
-        let rand1in11chance = Math.floor(Math.random() * 11);
-
-        if (rand1in11chance === 10) {
-            randNumber = numberSelect;
-        } else {
-            let randSecondNumber = Math.floor(Math.random() * 10);
-
-            randNumber = parseInt(`${numberSelect}${randSecondNumber}`);
-        }
-
-        if (Math.random() < 0.5) {
-           randNumber = (0 - randNumber);
-        }
+    while (allNumbers.length < numbersWanted) {
+        randNumber = generateSimilarNumber(allocatedNumber);
+        randNumber = randomiseSign(randNumber);
 
         if (allNumbers.includes(randNumber)) {
-            i--;
+            continue;
         } else {
             allNumbers.push(randNumber);
         }
     }
 
     return allNumbers;
+}
+
+function getBetween0And9() {
+    return (Math.floor(Math.random() * 10));
+}
+
+function getBetween0And10() {
+    return (Math.floor(Math.random() * 11));
+}
+
+function randomiseSign(randNumber) {
+    if (Math.random() < 0.5) {
+        randNumber = (0 - randNumber);
+    }
+
+    return randNumber;
+}
+
+function generateSimilarNumber(allocatedNumber) {
+    let rand1in11chance = getBetween0And10();
+
+    if (rand1in11chance === 10) {
+        randNumber = allocatedNumber;
+    } else {
+        let randSecondNumber =  getBetween0And9();
+
+        randNumber = parseInt(`${allocatedNumber}${randSecondNumber}`);
+    }
+
+    return randNumber;
 }
 
 function generateNumbers(score = 0) {
