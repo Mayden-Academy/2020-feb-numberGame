@@ -99,10 +99,6 @@ function makeScreenFlex(cssTag) {
     document.querySelector(cssTag).style.display = 'flex';
 }
 
-function makeScreenGrid(cssTag) {
-    document.querySelector(cssTag).style.display = 'grid';
-}
-
 function playGame() {
     const startingScore = 0;
     const randomNumbers = generateNumbers();
@@ -125,7 +121,7 @@ function timePenalty() {
     makeScreenFlex('#penaltyScreen');
 
     setTimeout(() => {
-        makeScreenGrid('#play_area');
+        makeScreenFlex('#play_area');
         hideScreen('#penaltyScreen');
     }, 2000);
 }
