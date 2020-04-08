@@ -226,22 +226,26 @@ function checkPositions(numbersGenerated) {
             cellsIterator = 0;
 
             if (found === numbersGenerated) {
-                const valueOfCell = cell.textContent;
-
-                cell.classList.remove('numberBox');
-                cell.textContent = '';
-
-                if (cells[4].classList.contains('numberBox')) {
-                    cells[0].classList.add('numberBox');
-                    cells[0].textContent = valueOfCell;
-                } else {
-                    cells[4].classList.add('numberBox');
-                    cells[4].textContent = valueOfCell;
-                }
+                moveValueToDifferentCell(cells, cell);
 
                 break;
             }
         }
+    }
+}
+
+function moveValueToDifferentCell(cells, cell) {
+    const valueOfCell = cell.textContent;
+
+    cell.classList.remove('numberBox');
+    cell.textContent = '';
+
+    if (cells[4].classList.contains('numberBox')) {
+        cells[0].classList.add('numberBox');
+        cells[0].textContent = valueOfCell;
+    } else {
+        cells[4].classList.add('numberBox');
+        cells[4].textContent = valueOfCell;
     }
 }
 
