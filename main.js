@@ -64,9 +64,9 @@ function generateNegativeNumbers(numbersWanted) {
     return allNumbers;
 }
 
-function generateHardNumbers(numbersWanted) {
+function generateHardNumbers(numbersWanted, existingNumbers = '') {
     let randNumber = '';
-    let allNumbers = [];
+    let allNumbers = existingNumbers;
     let numberSelect = Math.floor(Math.random() * 10);
 
     for (let i = 0; i < numbersWanted; i++) {
@@ -98,18 +98,34 @@ function generateNumbers(score = 0) {
     let numberArray = [];
     let numbersWanted = Math.floor(Math.random() * 3) + 3;
 
-    if (score < 2) {
-        numberArray = generateEasyNumbers(numbersWanted);
-    } else if ((score === 3) || (score === 4)) {
-        numberArray = generateNegativeNumbers(numbersWanted);
-    } else if ((score === 5) || (score === 6)) {
-        numberArray = generateNegativeNumbers(numbersWanted - 2).concat(generateHardNumbers(2));
-    } else if ((score === 7) || (score === 8)) {
-        numberArray = generateNegativeNumbers(numbersWanted - 3).concat(generateHardNumbers(3));
-    } else if ((score === 9) || (score === 10)) {
-        numberArray = generateHardNumbers(numbersWanted - 2).concat(generateHardNumbers(2));
-    } else {
-        numberArray = generateHardNumbers(numbersWanted);
+    switch (score) {
+        case 0:
+        case 1:
+        case 2:
+            numberArray = generateEasyNumbers(numbersWanted);
+            break;
+        case 3:
+        case 4:
+            numberArray = generateNegativeNumbers(numbersWanted);
+            break;
+        case 5:
+        case 6:
+            let firstNumbersGenerated = generateNegativeNumbers(numbersWanted - 2);
+            numberArray = (generateHardNumbers(2, firstNumbersGenerated));
+            break;
+        case 7:
+        case 8:
+            let firstNumbersGenerated = generateNegativeNumbers(numbersWanted - 3);
+            numberArray = (generateHardNumbers(3, firstNumbersGenerated));
+            break;
+        case 9:
+        case 10:
+            let firstNumbersGenerated = generateHardNumbers(2);
+            numberArray = (generateHardNumbers((numbersWanted - 2), firstNumbersGenerated));
+            break;
+        default:
+            numberArray = generateHardNumbers(numbersWanted);
+            break;
     }
 
     while ((arrayCheckEqualsAsc(numberArray)) || (arrayCheckEqualsDesc(numberArray))) {
