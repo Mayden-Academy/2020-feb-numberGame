@@ -101,7 +101,7 @@ function generateSimilarNumber(allocatedNumber) {
 }
 
 function generateNumbers(score = 0) {
-    let numberArray = [];
+    let numberArray;
     let numbersWanted = Math.floor(Math.random() * 3) + 3;
     let firstNumbersGenerated = [];
     let useNegative = true;
