@@ -107,7 +107,7 @@ function generatePositions(numbersOnScreen, randomNumbers, currentScore) {
             });
 
             if (occurrences > numbersOnScreen - 1) {
-                generatePositions(numbersOnScreen, randomNumbers);
+                generatePositions(numbersOnScreen, randomNumbers, currentScore);
             }
         });
     } else {
