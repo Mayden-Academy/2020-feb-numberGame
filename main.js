@@ -104,7 +104,7 @@ function generateNumbers(score = 0) {
     let numberArray;
     let numbersWanted = Math.floor(Math.random() * 3) + 3;
     let firstNumbersGenerated = [];
-    let useNegative = true;
+    const useNegative = true;
 
     switch (score) {
         case 0:
