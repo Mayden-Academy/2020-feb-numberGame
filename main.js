@@ -35,11 +35,11 @@ function arrayCheckEqualsDesc(array) {
 function generateEasyNumbers(numbersWanted) {
     let allNumbers = [];
 
+    // for (i = 0; i < numbersWanted; i++) {
     while (allNumbers.length < numbersWanted) {
         let randNumber = Math.floor(Math.random() * 101);
 
         if (allNumbers.includes(randNumber)) {
-            continue;
         } else {
             allNumbers.push(randNumber);
         }
@@ -51,11 +51,11 @@ function generateEasyNumbers(numbersWanted) {
 function generateNegativeNumbers(numbersWanted) {
     let allNumbers = [];
 
+    // for (i = 0; i < numbersWanted; i++) {
     while (allNumbers.length < numbersWanted) {
         let randNumber = Math.floor(Math.random() * 201) - 100;
 
         if (allNumbers.includes(randNumber)) {
-            continue;
         } else {
             allNumbers.push(randNumber);
         }
@@ -65,17 +65,16 @@ function generateNegativeNumbers(numbersWanted) {
 }
 
 function generateHardNumbers(numbersWanted, existingNumbers = []) {
-    console.log('blah');
     let randNumber = '';
     let allNumbers = existingNumbers;
     let allocatedNumber = getBetween0And9();
 
+    // for (i = 0; i < numbersWanted; i++) {
     while (allNumbers.length < numbersWanted) {
         randNumber = generateSimilarNumber(allocatedNumber);
         randNumber = randomiseSign(randNumber);
 
         if (allNumbers.includes(randNumber)) {
-            continue;
         } else {
             allNumbers.push(randNumber);
         }
