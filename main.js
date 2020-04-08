@@ -35,12 +35,11 @@ function arrayCheckEqualsDesc(array) {
 function generateEasyNumbers(numbersWanted) {
     let allNumbers = [];
 
-    for (let i = 0; i < numbersWanted; i++) {
+    while (allNumbers.length < numbersWanted) {
+
         let randNumber = Math.floor(Math.random() * 101);
 
-        if (allNumbers.includes(randNumber)) {
-            i--; //this makes the for loop run an additional time.
-        } else {
+        if (!allNumbers.includes(randNumber)) {
             allNumbers.push(randNumber);
         }
     }
@@ -51,12 +50,10 @@ function generateEasyNumbers(numbersWanted) {
 function generateNegativeNumbers(numbersWanted) {
     let allNumbers = [];
 
-    for (let i = 0; i < numbersWanted; i++) {
+    while (allNumbers.length < numbersWanted) {
         let randNumber = Math.floor(Math.random() * 201) - 100;
 
-        if (allNumbers.includes(randNumber)) {
-            i--;
-        } else {
+        if (!allNumbers.includes(randNumber)) {
             allNumbers.push(randNumber);
         }
     }
@@ -64,52 +61,90 @@ function generateNegativeNumbers(numbersWanted) {
     return allNumbers;
 }
 
-function generateHardNumbers(numbersWanted) {
+function generateHardNumbers(numbersWanted, existingNumbers = []) {
+    const allocatedNumber = getBetween0And9();
+    const totalNumbers = numbersWanted + existingNumbers.length;
     let randNumber = '';
     let allNumbers = [];
-    let numberSelect = Math.floor(Math.random() * 10);
 
-    for (let i = 0; i < numbersWanted; i++) {
-        let rand1in11chance = Math.floor(Math.random() * 11);
+    allNumbers = allNumbers.concat(existingNumbers);
 
-        if (rand1in11chance === 10) {
-            randNumber = numberSelect;
-        } else {
-            let randSecondNumber = Math.floor(Math.random() * 10);
+    while (allNumbers.length < totalNumbers) {
+        randNumber = generateSimilarNumber(allocatedNumber);
+        randNumber = randomiseSign(randNumber);
 
-            randNumber = parseInt(`${numberSelect}${randSecondNumber}`);
-        }
-
-        if (Math.random() < 0.5) {
-           randNumber = (0 - randNumber);
-        }
-
-        if (allNumbers.includes(randNumber)) {
-            i--;
-        } else {
+        if (!allNumbers.includes(randNumber)) {
             allNumbers.push(randNumber);
         }
     }
 
     return allNumbers;
+}
+
+function getBetween0And9() {
+    return (Math.floor(Math.random() * 10));
+}
+
+function getBetween0And10() {
+    return (Math.floor(Math.random() * 11));
+}
+
+function randomiseSign(randNumber) {
+    if (Math.random() < 0.5) {
+        randNumber = (0 - randNumber);
+    }
+
+    return randNumber;
+}
+
+function generateSimilarNumber(allocatedNumber) {
+    const rand1in11chance = getBetween0And10();
+    let randNumber;
+
+    if (rand1in11chance === 10) {
+        randNumber = allocatedNumber;
+    } else {
+        let randSecondNumber =  getBetween0And9();
+
+        randNumber = parseInt(`${allocatedNumber}${randSecondNumber}`);
+    }
+
+    return randNumber;
 }
 
 function generateNumbers(score = 0) {
     let numberArray = [];
     let numbersWanted = Math.floor(Math.random() * 3) + 3;
+    let firstNumbersGenerated = [];
 
-    if (score < 2) {
-        numberArray = generateEasyNumbers(numbersWanted);
-    } else if ((score === 3) || (score === 4)) {
-        numberArray = generateNegativeNumbers(numbersWanted);
-    } else if ((score === 5) || (score === 6)) {
-        numberArray = generateNegativeNumbers(numbersWanted - 2).concat(generateHardNumbers(2));
-    } else if ((score === 7) || (score === 8)) {
-        numberArray = generateNegativeNumbers(numbersWanted - 3).concat(generateHardNumbers(3));
-    } else if ((score === 9) || (score === 10)) {
-        numberArray = generateHardNumbers(numbersWanted - 2).concat(generateHardNumbers(2));
-    } else {
-        numberArray = generateHardNumbers(numbersWanted);
+    switch (score) {
+        case 0:
+        case 1:
+        case 2:
+            numberArray = generateEasyNumbers(numbersWanted);
+            break;
+        case 3:
+        case 4:
+            numberArray = generateNegativeNumbers(numbersWanted);
+            break;
+        case 5:
+        case 6:
+            firstNumbersGenerated = generateNegativeNumbers(numbersWanted - 2);
+            numberArray = (generateHardNumbers(2, firstNumbersGenerated));
+            break;
+        case 7:
+        case 8:
+            firstNumbersGenerated = generateNegativeNumbers(numbersWanted - 3);
+            numberArray = (generateHardNumbers(3, firstNumbersGenerated));
+            break;
+        case 9:
+        case 10:
+            firstNumbersGenerated = generateHardNumbers(2);
+            numberArray = (generateHardNumbers((numbersWanted - 2), firstNumbersGenerated));
+            break;
+        default:
+            numberArray = generateHardNumbers(numbersWanted);
+            break;
     }
 
     while ((arrayCheckEqualsAsc(numberArray)) || (arrayCheckEqualsDesc(numberArray))) {
